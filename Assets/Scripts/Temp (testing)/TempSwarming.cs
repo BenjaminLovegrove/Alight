@@ -7,10 +7,12 @@ public class TempSwarming : MonoBehaviour {
 	float newposy;
 	Vector3 newpos;
 	public GameObject swarmPoint;
+	public GameObject secondarySwarmPoint;
 	float changeDirTime;
+	float swarmSplitSpeedTimer = 0; //Timer for speeding up split fireflies to move to new point faster *TEMP* this is just while testing until proper movement is put in.
 
 	//Editable variables
-	float swarmSpeed = 0.3f;
+	float swarmSpeed = 0.4f;
 	float swarmRange = 2.5f;
 	float swarmDirectionVolatility = 1f;
 	
@@ -31,6 +33,12 @@ public class TempSwarming : MonoBehaviour {
 		if (changeDirTime <= 0) {
 			ChangeDir();
 		}
+
+		//*TEMP* this is just while testing until proper movement is put in.
+		swarmSplitSpeedTimer -= Time.deltaTime;
+		if (swarmSplitSpeedTimer <= 0) {
+			swarmSpeed = 0.4f;
+		}
 	}
 	
 	void ChangeDir(){
@@ -41,6 +49,15 @@ public class TempSwarming : MonoBehaviour {
 
 		//Set countdown to next new direction
 		changeDirTime = swarmDirectionVolatility;
+	}
+
+	void SwarmSplit(){
+		//Change to follow secondary spawn point.
+		swarmPoint = secondarySwarmPoint;
+
+		//Speed up only the split fireflies *TEMP* this is just while testing until proper movement is put in.
+		swarmSpeed = 1.5f;
+		swarmSplitSpeedTimer = 10f;
 	}
 
 }
