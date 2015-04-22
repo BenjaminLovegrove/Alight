@@ -11,6 +11,7 @@ public class SwarmManagement : MonoBehaviour {
 	Vector3 checkpointLoc;
 	float minSecondaryCollideTimer;
 	public GameObject secondarySwarmPoint;
+	float createSwarmCooldown; //This is because when moving a secondary swarm back to the main swarm it just instantly made another secondary swarm due to holding right click the next frame.
 
 	void Start () {
 		UpdateFireFlies ();
@@ -21,10 +22,13 @@ public class SwarmManagement : MonoBehaviour {
 	void Update () {
 		swarmCount = fireFlies.Length;
 
-		//Tell 3 fireflies to move to seconds swarm
-		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount >= 7) {
-			Instantiate (secondarySwarmPoint, transform.position, Quaternion.identity);
+		//If there is no secondary swarm keep the secondary swarm point at the same location.
+		if (!secondarySwarmActive) {
+			secondarySwarmPoint.transform.position = this.transform.position;
+		}
 
+		//Tell 3 fireflies to move to seconds swarm
+		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount >= 7 && createSwarmCooldown <= 0) {
 			fireFlies[0].SendMessage("SwarmSplit");
 			fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
 			fireFlies[2].SendMessage("SwarmSplit");
@@ -39,7 +43,9 @@ public class SwarmManagement : MonoBehaviour {
 			Respawn();
 		}
 
+		//Reduce cooldowns
 		minSecondaryCollideTimer -= Time.deltaTime;
+		createSwarmCooldown -= Time.deltaTime;
 	}
 
 	void UpdateFireFlies(){ 
@@ -56,7 +62,9 @@ public class SwarmManagement : MonoBehaviour {
 		//Respawn fireflies at checkpoint.
 	}
 
-	void onCollisionEnter(Collider col){
+	void onCollisionEnter(Collision col){
+		print ("yiiisss 2");
+
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0) {
 			fireFlies[0].SendMessage("SwarmReturn");
 			fireFlies[1].SendMessage("SwarmReturn"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
@@ -64,7 +72,7 @@ public class SwarmManagement : MonoBehaviour {
 
 			secondarySwarmActive = false;
 
-			Destroy (col);
+			createSwarmCooldown = 2f;
 		}
 	}
 }
