@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SwarmManagement : MonoBehaviour {
+public class oldSwarmManagement : MonoBehaviour {
 
 	public GameObject[] fireFlies;
 	int swarmCount;
