@@ -13,6 +13,10 @@ public class SwarmManagement : MonoBehaviour {
 	public GameObject secondarySwarmPoint;
 	float createSwarmCooldown; //This is because when moving a secondary swarm back to the main swarm it just instantly made another secondary swarm due to holding right click the next frame.
 
+	GameObject secondarySwarm01;
+	GameObject secondarySwarm02;
+	GameObject secondarySwarm03;
+
 	void Start () {
 		UpdateFireFlies ();
 		checkpointLoc = transform.position; //Set first checkpoint to where the mainswarm object starts.
@@ -20,22 +24,27 @@ public class SwarmManagement : MonoBehaviour {
 	
 
 	void Update () {
+		UpdateFireFlies ();
 		swarmCount = fireFlies.Length;
-
-		//If there is no secondary swarm keep the secondary swarm point at the same location.
-		if (!secondarySwarmActive) {
-			secondarySwarmPoint.transform.position = this.transform.position;
-		}
 
 		//Tell 3 fireflies to move to seconds swarm
 		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount >= 7 && createSwarmCooldown <= 0) {
+			secondarySwarmPoint.transform.position = this.transform.position;
 			fireFlies[0].SendMessage("SwarmSplit");
 			fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point instead of first
 			fireFlies[2].SendMessage("SwarmSplit");
+			secondarySwarm01 = fireFlies[0];
+			secondarySwarm02 = fireFlies[1];
+			secondarySwarm03 = fireFlies[2];
 
 			secondarySwarmActive = true;
 
 			minSecondaryCollideTimer = 5f;
+		}
+
+		//See if secondary swarm is dead.
+		if (secondarySwarm01 == null && secondarySwarm02 == null && secondarySwarm03 == null) {
+			secondarySwarmActive = false;
 		}
 
 		if (swarmCount <= 0) {
@@ -64,7 +73,7 @@ public class SwarmManagement : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col){
-		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0) {
+		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0 && secondarySwarmActive) {
 			fireFlies[0].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
 			fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
 			fireFlies[2].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
