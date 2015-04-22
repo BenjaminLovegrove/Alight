@@ -29,7 +29,7 @@ public class SwarmManagement : MonoBehaviour {
 		swarmCount = fireFlies.Length;
 
 		//Tell 3 fireflies to move to seconds swarm
-		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount >= 7 && createSwarmCooldown <= 0) {
+		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount >= 4 && createSwarmCooldown <= 0) {
 			secondarySwarmPoint.transform.position = this.transform.position;
 			fireFlies[0].SendMessage("SwarmSplit");
 			fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point instead of first

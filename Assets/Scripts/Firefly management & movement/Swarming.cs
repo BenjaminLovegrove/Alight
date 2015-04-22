@@ -57,6 +57,8 @@ public class Swarming : MonoBehaviour {
 		//Change to follow secondary spawn point.
 		swarmPoint = secondarySwarmPoint;
 		mainSwarm = false;
+		swarmRange = 7f;
+		swarmSpeed = 1.5f;
 	}
 
 	void SwarmReturn(){
@@ -64,6 +66,8 @@ public class Swarming : MonoBehaviour {
 		//Change swarmPoint back to main swarm point.
 		swarmPoint = mainSwarmPoint;
 		mainSwarm = true;
+		swarmRange = 15f;
+		swarmSpeed = 3f;
 	}
 
 	
