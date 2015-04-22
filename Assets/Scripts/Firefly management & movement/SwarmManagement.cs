@@ -62,7 +62,7 @@ public class SwarmManagement : MonoBehaviour {
 		//Respawn fireflies at checkpoint.
 	}
 
-	void onCollisionEnter(Collision col){
+	void OnCollisionEnter(Collision col){
 		print ("yiiisss 2");
 
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0) {

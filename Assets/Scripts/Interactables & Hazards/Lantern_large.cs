@@ -13,7 +13,7 @@ public class Lantern_large : MonoBehaviour {
 	}
 	
 	
-	void onCollisionEnter (Collision col) {
+	void OnCollisionEnter (Collision col) {
 		if (col.gameObject.tag == "FireFly") {
 			lanternLight.enabled = true;
 			//play sound.
