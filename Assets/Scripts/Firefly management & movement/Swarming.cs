@@ -66,4 +66,10 @@ public class Swarming : MonoBehaviour {
 		mainSwarm = true;
 	}
 
+	
+	void WallCollide(){
+		Destroy (this.gameObject);
+		//Play a sound;
+	}
+
 }
