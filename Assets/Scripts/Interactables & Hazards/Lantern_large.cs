@@ -6,6 +6,7 @@ public class Lantern_large : MonoBehaviour {
 	public Light lanternLight; //To turn lantern on
 	AudioClip lanternEnable; //SFX
 	GameObject mainSwarm; //To send checkpoints to
+	public GameObject spawnPoint;
 	
 	void Start () {
 		lanternLight = GetComponent<Light>();
@@ -18,7 +19,7 @@ public class Lantern_large : MonoBehaviour {
 			lanternLight.enabled = true;
 			//play sound.
 
-			mainSwarm.SendMessage ("Checkpoint", transform.position);
+			mainSwarm.SendMessage ("Checkpoint", spawnPoint.transform.position);
 		}
 	}
 }

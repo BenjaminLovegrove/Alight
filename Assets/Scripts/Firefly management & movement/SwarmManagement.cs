@@ -30,7 +30,7 @@ public class SwarmManagement : MonoBehaviour {
 		//Tell 3 fireflies to move to seconds swarm
 		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount >= 7 && createSwarmCooldown <= 0) {
 			fireFlies[0].SendMessage("SwarmSplit");
-			fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
+			fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point instead of first
 			fireFlies[2].SendMessage("SwarmSplit");
 
 			secondarySwarmActive = true;
@@ -60,11 +60,11 @@ public class SwarmManagement : MonoBehaviour {
 
 	void Respawn(){
 		//Respawn fireflies at checkpoint.
+		//Move main swarm to checkpoint point
+		//instantiate 15 fireflies.
 	}
 
 	void OnCollisionEnter(Collision col){
-		print ("yiiisss 2");
-
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0) {
 			fireFlies[0].SendMessage("SwarmReturn");
 			fireFlies[1].SendMessage("SwarmReturn"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
