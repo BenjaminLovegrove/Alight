@@ -2,14 +2,23 @@
 using System.Collections;
 
 public class Lantern_large : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
 	
+	public Light lanternLight; //To turn lantern on
+	AudioClip lanternEnable; //SFX
+	GameObject mainSwarm; //To send checkpoints to
+	
+	void Start () {
+		lanternLight = GetComponent<Light>();
+		mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
 	}
 	
-	// Update is called once per frame
-	void Update () {
 	
+	void onCollisionEnter (Collision col) {
+		if (col.gameObject.tag == "FireFly") {
+			lanternLight.enabled = true;
+			//play sound.
+
+			mainSwarm.SendMessage ("Checkpoint", transform.position);
+		}
 	}
 }

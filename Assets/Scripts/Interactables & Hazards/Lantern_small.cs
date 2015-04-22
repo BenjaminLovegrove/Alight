@@ -3,13 +3,18 @@ using System.Collections;
 
 public class Lantern_small : MonoBehaviour {
 
-	// Use this for initialization
+	public Light lanternLight;
+	AudioClip lanternEnable;
+
 	void Start () {
-	
+		lanternLight = GetComponent<Light>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void onCollisionEnter (Collision col) {
+		if (col.gameObject.tag == "FireFly") {
+			lanternLight.enabled = true;
+			//play sound.
+		}
 	}
 }
