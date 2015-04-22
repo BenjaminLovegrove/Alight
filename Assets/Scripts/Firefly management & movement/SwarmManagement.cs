@@ -37,7 +37,6 @@ public class SwarmManagement : MonoBehaviour {
 
 			minSecondaryCollideTimer = 5f;
 		}
-	
 
 		if (swarmCount <= 0) {
 			Respawn();
@@ -66,9 +65,9 @@ public class SwarmManagement : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0) {
-			fireFlies[0].SendMessage("SwarmReturn");
-			fireFlies[1].SendMessage("SwarmReturn"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
-			fireFlies[2].SendMessage("SwarmReturn");
+			fireFlies[0].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
+			fireFlies[2].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
 
 			secondarySwarmActive = false;
 
