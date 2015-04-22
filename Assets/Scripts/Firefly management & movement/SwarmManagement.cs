@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SwarmManagement : MonoBehaviour {
 
-	public GameObject[] fireFlies;
+	public GameObject[] fireFlies = new GameObject[15];
+	public GameObject[] fireFliesSecondary = new GameObject[3];
 	int swarmCount;
 	bool secondarySwarmActive = false;
 	Vector3 checkpointLoc;
+	float minSecondaryCollideTimer;
+	public GameObject secondarySwarmPoint;
 
 	void Start () {
 		UpdateFireFlies ();
@@ -19,17 +23,23 @@ public class SwarmManagement : MonoBehaviour {
 
 		//Tell 3 fireflies to move to seconds swarm
 		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount >= 7) {
+			Instantiate (secondarySwarmPoint, transform.position, Quaternion.identity);
+
 			fireFlies[0].SendMessage("SwarmSplit");
 			fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
 			fireFlies[2].SendMessage("SwarmSplit");
 
 			secondarySwarmActive = true;
+
+			minSecondaryCollideTimer = 5f;
 		}
 	
 
 		if (swarmCount <= 0) {
 			Respawn();
 		}
+
+		minSecondaryCollideTimer -= Time.deltaTime;
 	}
 
 	void UpdateFireFlies(){ 
@@ -44,5 +54,17 @@ public class SwarmManagement : MonoBehaviour {
 
 	void Respawn(){
 		//Respawn fireflies at checkpoint.
+	}
+
+	void onCollisionEnter(Collider col){
+		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0) {
+			fireFlies[0].SendMessage("SwarmReturn");
+			fireFlies[1].SendMessage("SwarmReturn"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
+			fireFlies[2].SendMessage("SwarmReturn");
+
+			secondarySwarmActive = false;
+
+			Destroy (col);
+		}
 	}
 }

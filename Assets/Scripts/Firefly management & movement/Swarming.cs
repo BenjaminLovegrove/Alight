@@ -10,7 +10,6 @@ public class Swarming : MonoBehaviour {
 	public GameObject mainSwarmPoint;
 	public GameObject secondarySwarmPoint;
 	float changeDirTime;
-	float swarmSplitSpeedTimer = 0; //Timer for speeding up split fireflies to move to new point faster *TEMP* this is just while testing until proper movement is put in.
 
 	public bool mainSwarm = true;
 
@@ -42,13 +41,6 @@ public class Swarming : MonoBehaviour {
 		if (changeDirTime <= 0) {
 			ChangeDir();
 		}
-
-		//*TEMP* this is just while testing until proper movement is put in.
-		swarmSplitSpeedTimer -= Time.deltaTime;
-		if (swarmSplitSpeedTimer <= 0) {
-			swarmSpeed = swarmNormSpeed;
-		}
-
 	}
 	
 	void ChangeDir(){
@@ -65,15 +57,13 @@ public class Swarming : MonoBehaviour {
 		//Change to follow secondary spawn point.
 		swarmPoint = secondarySwarmPoint;
 		mainSwarm = false;
-
-		//Speed up only the split fireflies *TEMP* this is just while testing until proper movement is put in.
-		swarmSpeed = 1.5f;
-		swarmSplitSpeedTimer = 10f;
 	}
 
 	void SwarmReturn(){
 		//When secondary swarm collides with main swarm, tell secondary swarm fireflies to do this.
 		//Change swarmPoint back to main swarm point.
+		swarmPoint = mainSwarmPoint;
+		mainSwarm = true;
 	}
 
 }
