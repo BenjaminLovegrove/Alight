@@ -17,6 +17,7 @@ public class Swarming : MonoBehaviour {
 	float swarmSpeed = 3f;
 	float swarmNormSpeed;
 	float swarmRange = 15f;
+	float swarmNormRange;
 	float swarmDirectionVolatility = 1f;
 	
 	void Start () {
@@ -24,6 +25,7 @@ public class Swarming : MonoBehaviour {
 		secondarySwarmPoint = GameObject.FindGameObjectWithTag ("SecondarySwarm");
 		swarmPoint = mainSwarmPoint;
 		swarmNormSpeed = swarmSpeed;
+		swarmNormRange = swarmRange;
 
 		//Set initial direction
 		ChangeDir ();
@@ -66,8 +68,8 @@ public class Swarming : MonoBehaviour {
 		//Change swarmPoint back to main swarm point.
 		swarmPoint = mainSwarmPoint;
 		mainSwarm = true;
-		swarmRange = 15f;
-		swarmSpeed = 3f;
+		swarmRange = swarmNormRange;
+		swarmSpeed = swarmNormSpeed;
 	}
 
 	

@@ -74,11 +74,11 @@ public class SwarmManagement : MonoBehaviour {
 		Camera.main.transform.position = new Vector3 (checkpointLoc.x, checkpointLoc.y, -30);
 		transform.position = checkpointLoc;
 		for(int i = 0; i < 15; i++){
-			Instantiate(fireFlyPrefab, checkpointLoc, Quaternion.identity);
+			Instantiate(fireFlyPrefab, checkpointLoc, fireFlyPrefab.transform.rotation);
 		}
 	}
 
-	void OnCollisionEnter(Collision col){
+	void OnTriggerEnter(Collider col){
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0 && secondarySwarmActive) {
 			fireFlies[0].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
 			fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first

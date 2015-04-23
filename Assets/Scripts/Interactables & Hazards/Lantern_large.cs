@@ -5,7 +5,7 @@ public class Lantern_large : MonoBehaviour {
 	
 	public Light lanternLight; //To turn lantern on
 	public ParticleSystem particles;
-	AudioClip lanternEnable; //SFX
+	public AudioClip lanternEnable; //SFX
 	GameObject mainSwarm; //To send checkpoints to
 	public GameObject spawnPoint;
 
@@ -26,7 +26,7 @@ public class Lantern_large : MonoBehaviour {
 		if (col.gameObject.tag == "FireFly" && lanternLight.enabled == false) {
 			lanternLight.enabled = true;
 			particles.gameObject.SetActive(true);
-			//play sound.
+			Camera.main.BroadcastMessage("PlaySound", lanternEnable);
 
 			mainSwarm.SendMessage ("Checkpoint", spawnPoint.transform.position);
 		}

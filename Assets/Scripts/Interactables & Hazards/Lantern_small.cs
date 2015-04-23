@@ -5,7 +5,7 @@ public class Lantern_small : MonoBehaviour {
 	
 	public Light lanternLight; //To turn lantern on
 	public ParticleSystem particles;
-	AudioClip lanternEnable; //SFX
+	public AudioClip lanternEnable; //SFX
 	
 	public bool startActive = false; // this is so the first lantern can start on.
 	
@@ -23,7 +23,7 @@ public class Lantern_small : MonoBehaviour {
 		if (col.gameObject.tag == "FireFly" && lanternLight.enabled == false) {
 			lanternLight.enabled = true;
 			particles.gameObject.SetActive(true);
-			//play sound.
+			Camera.main.BroadcastMessage("PlaySound", lanternEnable);
 
 		}
 	}
