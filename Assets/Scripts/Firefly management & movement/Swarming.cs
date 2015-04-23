@@ -13,6 +13,10 @@ public class Swarming : MonoBehaviour {
 
 	public bool mainSwarm = true;
 
+	public Light fireflyHalo;
+	Color originalHalo;
+	float originalHaloSize;
+
 	//Editable variables
 	float swarmSpeed = 3f;
 	float swarmNormSpeed;
@@ -26,6 +30,8 @@ public class Swarming : MonoBehaviour {
 		swarmPoint = mainSwarmPoint;
 		swarmNormSpeed = swarmSpeed;
 		swarmNormRange = swarmRange;
+		originalHalo = fireflyHalo.color;
+		originalHaloSize = fireflyHalo.range;
 
 		//Set initial direction
 		ChangeDir ();
@@ -61,6 +67,8 @@ public class Swarming : MonoBehaviour {
 		mainSwarm = false;
 		swarmRange = 7f;
 		swarmSpeed = 1.5f;
+		//fireflyHalo.color = Color.red;
+		fireflyHalo.range = originalHaloSize * 1.5f;
 	}
 
 	void SwarmReturn(){
@@ -70,6 +78,8 @@ public class Swarming : MonoBehaviour {
 		mainSwarm = true;
 		swarmRange = swarmNormRange;
 		swarmSpeed = swarmNormSpeed;
+		fireflyHalo.color = originalHalo;
+		fireflyHalo.range = originalHaloSize;
 	}
 
 	
