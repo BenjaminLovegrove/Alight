@@ -18,7 +18,10 @@ public class SwarmPointMovement : MonoBehaviour {
 		
 		Vector3 FireflyDraggerPos = FireflyDragger.transform.position;
 		dir = FireflyDraggerPos - transform.position;
-		
+
+	}
+
+	void FixedUpdate(){
 		if (Input.GetMouseButton (0) && mainSwarm) {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
