@@ -20,7 +20,13 @@ public class Lantern_large : MonoBehaviour {
 			particles.gameObject.SetActive (false);
 		}
 	}
-	
+
+	void Update(){
+		if (Vector3.Distance(this.transform.position, mainSwarm.transform.position) > 200) {
+			lanternLight.enabled = false;
+			particles.gameObject.SetActive(false);
+		}
+	}
 	
 	void OnTriggerEnter (Collider col) {
 		if (col.gameObject.tag == "FireFly" && lanternLight.enabled == false) {

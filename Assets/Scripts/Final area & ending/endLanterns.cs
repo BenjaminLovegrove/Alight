@@ -6,12 +6,11 @@ public class endLanterns : MonoBehaviour {
 	public int lanternNumber;
 	public GameObject endVine;
 	public Light lanternLight; //To turn lantern on
-	//public ParticleSystem particles;
 	
 	void Start () {
 		lanternLight = GetComponentInChildren<Light>();
 		endVine = GameObject.FindGameObjectWithTag ("finalVine");
-		//particles = GetComponentInChildren<ParticleSystem>();
+
 	}
 
 	void OnTriggerEnter (Collider col) {
