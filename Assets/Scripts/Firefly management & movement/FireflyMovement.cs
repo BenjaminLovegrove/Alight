@@ -9,7 +9,7 @@ public class FireflyMovement : MonoBehaviour {
 	public bool mainSwarm;
 	Swarming scrSwarm;
 	public AudioClip ffDeath;
-	
+
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		FireflyDragger = GameObject.FindGameObjectWithTag ("FireflyDragger");
@@ -33,9 +33,5 @@ public class FireflyMovement : MonoBehaviour {
 		if (Input.GetMouseButton (1) && !mainSwarm) {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
-	}
-
-	void OnDestroy(){
-		Camera.main.BroadcastMessage("PlaySound", ffDeath);
 	}
 }

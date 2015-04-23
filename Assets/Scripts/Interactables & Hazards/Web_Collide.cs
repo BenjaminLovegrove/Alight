@@ -22,6 +22,7 @@ public class Web_Collide : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.tag == "FireFly"){
+			Camera.main.BroadcastMessage("Death");
 			Destroy(collision.gameObject);
 			StartCoroutine(BurnMe(2.0F));
 		}
