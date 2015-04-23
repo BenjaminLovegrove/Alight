@@ -2,19 +2,29 @@
 using System.Collections;
 
 public class Lantern_small : MonoBehaviour {
-
-	public Light lanternLight;
-	AudioClip lanternEnable;
-
+	
+	public Light lanternLight; //To turn lantern on
+	public ParticleSystem particles;
+	AudioClip lanternEnable; //SFX
+	
+	public bool startActive = false; // this is so the first lantern can start on.
+	
 	void Start () {
-		lanternLight = GetComponent<Light>();
+		lanternLight = GetComponentInChildren<Light>();
+		particles = GetComponentInChildren<ParticleSystem>();
+		
+		if (!startActive) {
+			particles.gameObject.SetActive (false);
+		}
 	}
 	
-
-	void OnCollisionEnter (Collision col) {
-		if (col.gameObject.tag == "FireFly") {
+	
+	void OnTriggerEnter (Collider col) {
+		if (col.gameObject.tag == "FireFly" && lanternLight.enabled == false) {
 			lanternLight.enabled = true;
+			particles.gameObject.SetActive(true);
 			//play sound.
+
 		}
 	}
 }
