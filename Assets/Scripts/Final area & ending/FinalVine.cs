@@ -14,6 +14,9 @@ public class FinalVine : MonoBehaviour {
 	public AudioClip chime2;
 	public AudioClip chime3;
 	public AudioClip chime4;
+	public AudioClip grow;
+
+	bool end = false;
 
 	//Chime sound here
 	//Fail sound here
@@ -25,11 +28,9 @@ public class FinalVine : MonoBehaviour {
 	}
 
 	void Update(){
-		if (currentLantern >= 5) {
-			//Animate branch
-			//grow sound
-			transform.position = Vector3.Lerp(startPos, completePos.position, .4f);
-			print ("woo");
+		if (currentLantern >= 5 && end == false) {
+			Invoke ("vineClear", 1.5f);
+			end = true;
 		}
 	}
 
@@ -58,5 +59,10 @@ public class FinalVine : MonoBehaviour {
 				currentLantern = 1;
 			}
 		}
+	}
+
+	void vineClear(){
+		AudioSource.PlayClipAtPoint(grow, Camera.main.transform.position);
+		transform.position = Vector3.Lerp(startPos, completePos.position, .4f);
 	}
 }

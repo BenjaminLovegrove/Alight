@@ -23,7 +23,7 @@ public class endLanterns : MonoBehaviour {
 	}
 
 	void Incorrect(){
-		Invoke ("TurnOff", 1f);
+		Invoke ("TurnOff", 2f);
 	}
 
 	void TurnOff(){
