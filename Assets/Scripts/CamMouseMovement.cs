@@ -26,4 +26,8 @@ public class CamMouseMovement : MonoBehaviour {
 			rb.AddForce((mousePos - screenCenterPoint) * Time.deltaTime * 2);
 		}
 	}
+
+	void Lock(){ //this is called when the player reaches the end to stop the cam moving and load the cinematic
+		rb.isKinematic = true;
+	}
 }
