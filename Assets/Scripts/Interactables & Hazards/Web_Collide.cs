@@ -17,7 +17,7 @@ public class Web_Collide : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	void OnCollisionEnter(Collision collision) {
@@ -30,7 +30,9 @@ public class Web_Collide : MonoBehaviour {
 	IEnumerator BurnMe(float waitTime) {
 		Fire1.SetActive(true);
 		Fire2.SetActive(true);
-		Fire3.SetActive(true);
+		if (Fire3 != null) {
+			Fire3.SetActive (true);
+		}
 		yield return new WaitForSeconds(waitTime);
 		Destroy(this.gameObject);
 		if (Log != null) {
