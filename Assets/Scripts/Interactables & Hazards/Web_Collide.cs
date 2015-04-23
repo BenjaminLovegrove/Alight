@@ -31,8 +31,10 @@ public class Web_Collide : MonoBehaviour {
 		Fire2.SetActive(true);
 		Fire3.SetActive(true);
 		yield return new WaitForSeconds(waitTime);
-		Log.rigidbody.isKinematic = false;
-		Log.rigidbody.useGravity = true;
 		Destroy(this.gameObject);
+		if (Log != null) {
+			Log.rigidbody.isKinematic = false;
+			Log.rigidbody.useGravity = true;
+		}
 	}
 }
