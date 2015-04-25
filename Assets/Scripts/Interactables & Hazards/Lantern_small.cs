@@ -6,14 +6,14 @@ public class Lantern_small : MonoBehaviour {
 	public Light lanternLight; //To turn lantern on
 	public ParticleSystem particles;
 	public AudioClip lanternEnable; //SFX
-	GameObject mainSwarm;
+	//GameObject mainSwarm; Only needed if the distance statement in update is needed for performance
 	
 	public bool startActive = false; // this is so the first lantern can start on.
 	
 	void Start () {
 		lanternLight = GetComponentInChildren<Light>();
 		particles = GetComponentInChildren<ParticleSystem>();
-		mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
+		//mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
 		
 		if (!startActive) {
 			particles.gameObject.SetActive (false);

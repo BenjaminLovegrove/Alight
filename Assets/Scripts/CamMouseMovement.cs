@@ -18,12 +18,12 @@ public class CamMouseMovement : MonoBehaviour {
 		screenCenterPoint = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, 30));
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			Application.Quit();
+			Application.LoadLevel("Main_Menu");
 		}
 	}
 
 	void FixedUpdate(){
-		if (Mathf.Abs(mousePos.x - screenCenterPoint.x) > 13) {
+		if (Mathf.Abs(mousePos.x - screenCenterPoint.x) > 12) {
 			rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
 		} else if (Mathf.Abs(mousePos.y - screenCenterPoint.y) > 5) {
 			rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
