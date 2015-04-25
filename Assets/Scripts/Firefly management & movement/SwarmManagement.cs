@@ -20,6 +20,8 @@ public class SwarmManagement : MonoBehaviour {
 	GameObject secondarySwarm02;
 	GameObject secondarySwarm03;
 
+	bool respawnTrigger = false;
+
 	void Start () {
 		UpdateFireFlies ();
 		checkpointLoc = transform.position; //Set first checkpoint to where the mainswarm object starts.
@@ -50,7 +52,8 @@ public class SwarmManagement : MonoBehaviour {
 			secondarySwarmActive = false;
 		}
 
-		if (swarmCount <= 0) {
+		if (swarmCount <= 0 && respawnTrigger == false) {
+			respawnTrigger = true;
 			Invoke ("Respawn", 2f);
 		}
 
@@ -79,6 +82,7 @@ public class SwarmManagement : MonoBehaviour {
 		for(int i = 0; i < 15; i++){
 			Instantiate(fireFlyPrefab, checkpointLoc, fireFlyPrefab.transform.rotation);
 		}
+		respawnTrigger = false;
 	}
 
 	void OnTriggerEnter(Collider col){
