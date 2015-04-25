@@ -18,9 +18,6 @@ public class FinalVine : MonoBehaviour {
 
 	bool end = false;
 
-	//Chime sound here
-	//Fail sound here
-	
 	void Start () {
 		lanterns = GameObject.FindGameObjectsWithTag ("finalLantern");
 		completePos = transform.Find ("completePos");

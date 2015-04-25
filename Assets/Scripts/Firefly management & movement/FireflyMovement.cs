@@ -9,11 +9,21 @@ public class FireflyMovement : MonoBehaviour {
 	public bool mainSwarm;
 	Swarming scrSwarm;
 	public AudioClip ffDeath;
+	bool lightOn = false;
+
+	//For light fade in
+	public Light areaLight;
+	float startIntensity;
 
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		FireflyDragger = GameObject.FindGameObjectWithTag ("FireflyDragger");
 		scrSwarm = GetComponent<Swarming>();
+
+		
+		areaLight = GetComponentInChildren<Light>();
+		startIntensity = areaLight.intensity;
+		areaLight.intensity = 0;
 	}
 	
 	void Update () {
@@ -25,6 +35,10 @@ public class FireflyMovement : MonoBehaviour {
 
 		Vector3 FireflyDraggerPos = FireflyDragger.transform.position;
 		dir = FireflyDraggerPos - transform.position;
+
+		if (lightOn == true && areaLight.intensity < startIntensity) {
+			areaLight.intensity = Mathf.Lerp(areaLight.intensity, startIntensity, Time.deltaTime * 0.5f);
+		}
 	}
 
 	void FixedUpdate(){
@@ -35,5 +49,9 @@ public class FireflyMovement : MonoBehaviour {
 		if (Input.GetMouseButton (1) && !mainSwarm) {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
+	}
+
+	void LightOn(){
+		lightOn = true;
 	}
 }

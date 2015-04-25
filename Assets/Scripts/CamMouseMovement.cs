@@ -9,6 +9,7 @@ public class CamMouseMovement : MonoBehaviour {
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
+		rb.isKinematic = true;
 	}
 
 	// Update is called once per frame
@@ -22,12 +23,16 @@ public class CamMouseMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (Vector3.Distance (mousePos, screenCenterPoint) > 10){
+		if (Vector3.Distance (mousePos, screenCenterPoint) > 8){
 			rb.AddForce((mousePos - screenCenterPoint) * Time.deltaTime * 2);
 		}
 	}
 
 	void Lock(){ //this is called when the player reaches the end to stop the cam moving and load the cinematic
 		rb.isKinematic = true;
+	}
+
+	void Unlock(){
+		rb.isKinematic = false;
 	}
 }
