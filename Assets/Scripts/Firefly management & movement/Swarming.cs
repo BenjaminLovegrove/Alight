@@ -18,9 +18,9 @@ public class Swarming : MonoBehaviour {
 	float originalHaloSize;
 
 	//Editable variables
-	float swarmSpeed = 3f;
+	float swarmSpeed = 2f;
 	float swarmNormSpeed;
-	float swarmRange = 15f;
+	float swarmRange = 14f;
 	float swarmNormRange;
 	float swarmDirectionVolatility = 1f;
 	
@@ -65,7 +65,7 @@ public class Swarming : MonoBehaviour {
 		//Change to follow secondary spawn point.
 		swarmPoint = secondarySwarmPoint;
 		mainSwarm = false;
-		swarmRange = 10f;
+		swarmRange = 8f;
 		swarmSpeed = 1.5f;
 		//fireflyHalo.color = Color.red;
 		fireflyHalo.range = originalHaloSize * 1.5f;

@@ -6,6 +6,7 @@ public class CamMouseMovement : MonoBehaviour {
 	Rigidbody rb;
 	Vector3 mousePos;
 	Vector3 screenCenterPoint;
+	public GameObject playerCursor;
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
@@ -23,10 +24,12 @@ public class CamMouseMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (Mathf.Abs(mousePos.x - screenCenterPoint.x) > 12) {
-			rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
-		} else if (Mathf.Abs(mousePos.y - screenCenterPoint.y) > 5) {
-			rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+		if (playerCursor.renderer.isVisible) {
+			if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 12) {
+				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+			} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 5) {
+				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+			}
 		}
 
 		//This makes x a bit too sensative and y not enough.
