@@ -22,10 +22,12 @@ public class Lantern_large : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Vector3.Distance(this.transform.position, mainSwarm.transform.position) > 200) {
+		/*This is for performance if needed. Turns lanterns that you've gone a bit past off.
+		 * if (Vector3.Distance(this.transform.position, mainSwarm.transform.position) > 250) {
 			lanternLight.enabled = false;
 			particles.gameObject.SetActive(false);
 		}
+		*/
 	}
 	
 	void OnTriggerEnter (Collider col) {

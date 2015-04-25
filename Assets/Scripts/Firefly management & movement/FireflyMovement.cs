@@ -10,6 +10,7 @@ public class FireflyMovement : MonoBehaviour {
 	Swarming scrSwarm;
 	public AudioClip ffDeath;
 	bool lightOn = false;
+	public bool initialFirefly = false; //Needs to be manually set to true on starting fireflies so they start without light.
 
 	//For light fade in
 	public Light areaLight;
@@ -23,7 +24,9 @@ public class FireflyMovement : MonoBehaviour {
 		
 		areaLight = GetComponentInChildren<Light>();
 		startIntensity = areaLight.intensity;
-		areaLight.intensity = 0;
+		if (initialFirefly) {
+			areaLight.intensity = 0;
+		}
 	}
 	
 	void Update () {
