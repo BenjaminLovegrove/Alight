@@ -23,9 +23,17 @@ public class CamMouseMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (Vector3.Distance (mousePos, screenCenterPoint) > 8){
+		if (Mathf.Abs(mousePos.x - screenCenterPoint.x) > 13) {
+			rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+		} else if (Mathf.Abs(mousePos.y - screenCenterPoint.y) > 5) {
+			rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+		}
+
+		//This makes x a bit too sensative and y not enough.
+		/*if (Vector3.Distance (mousePos, screenCenterPoint) > 8){
 			rb.AddForce((mousePos - screenCenterPoint) * Time.deltaTime * 2);
 		}
+		*/
 	}
 
 	void Lock(){ //this is called when the player reaches the end to stop the cam moving and load the cinematic
