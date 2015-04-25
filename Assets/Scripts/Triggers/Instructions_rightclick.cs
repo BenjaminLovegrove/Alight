@@ -4,7 +4,7 @@ using System.Collections;
 public class Instructions_rightclick : MonoBehaviour {
 	
 	SpriteRenderer sprText;
-	float startTimer = 2f;
+	float startTimer = 3.5f;
 	bool startEnable = false;
 	GameObject mainswarm;
 
@@ -17,7 +17,7 @@ public class Instructions_rightclick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Vector3.Distance (mainswarm.transform.position, transform.position) < 25) {
+		if (Vector3.Distance (mainswarm.transform.position, transform.position) < 20) {
 			startTimer -= Time.deltaTime;
 		}
 		

@@ -40,7 +40,7 @@ public class FireflyMovement : MonoBehaviour {
 		dir = FireflyDraggerPos - transform.position;
 
 		if (lightOn == true && areaLight.intensity < startIntensity) {
-			areaLight.intensity = Mathf.Lerp(areaLight.intensity, startIntensity, Time.deltaTime * 0.5f);
+			areaLight.intensity = Mathf.Lerp(areaLight.intensity, startIntensity, Time.deltaTime * 0.25f);
 		}
 	}
 

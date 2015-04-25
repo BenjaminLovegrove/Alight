@@ -42,7 +42,7 @@ public class SwarmManagement : MonoBehaviour {
 
 			secondarySwarmActive = true;
 
-			minSecondaryCollideTimer = 5f;
+			minSecondaryCollideTimer = 4f;
 		}
 
 		//See if secondary swarm is dead.
@@ -51,7 +51,7 @@ public class SwarmManagement : MonoBehaviour {
 		}
 
 		if (swarmCount <= 0) {
-			Respawn();
+			Invoke ("Respawn", 2f);
 		}
 
 		//Reduce cooldowns
