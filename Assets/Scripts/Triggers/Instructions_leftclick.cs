@@ -4,7 +4,7 @@ using System.Collections;
 public class Instructions_leftclick : MonoBehaviour {
 
 	SpriteRenderer sprText;
-	float startTimer = 3f;
+	float startTimer = 2.5f;
 	bool startEnable = false;
 
 	void Start(){

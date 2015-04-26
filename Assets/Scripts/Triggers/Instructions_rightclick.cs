@@ -17,7 +17,6 @@ public class Instructions_rightclick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Vector3.Distance (mainswarm.transform.position, transform.position) < 20) {
 			startTimer -= Time.deltaTime;
 		}
 		

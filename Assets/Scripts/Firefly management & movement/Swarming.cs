@@ -10,6 +10,7 @@ public class Swarming : MonoBehaviour {
 	public GameObject mainSwarmPoint;
 	public GameObject secondarySwarmPoint;
 	float changeDirTime;
+	public GameObject fireflyDead;
 
 	public bool mainSwarm = true;
 
@@ -84,6 +85,7 @@ public class Swarming : MonoBehaviour {
 
 	
 	void WallCollide(){
+		Instantiate (fireflyDead, transform.position, Quaternion.identity);
 		Destroy (this.gameObject);
 		//Play a sound;
 	}
