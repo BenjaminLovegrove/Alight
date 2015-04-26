@@ -11,7 +11,6 @@ public class ActivateStars : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider col) {
-		print (col.gameObject.tag);
 		if (triggered == false){
 			triggered = true;
 

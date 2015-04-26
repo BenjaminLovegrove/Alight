@@ -46,4 +46,5 @@ public class CamMouseMovement : MonoBehaviour {
 	void Unlock(){
 		rb.isKinematic = false;
 	}
+
 }
