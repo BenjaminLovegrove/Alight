@@ -7,6 +7,7 @@ public class scr_star : MonoBehaviour {
 	MeshRenderer meshRenderer;
 	float rngTimer = 9999;
 	bool activated = false;
+	public AudioClip starDing;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,7 @@ public class scr_star : MonoBehaviour {
 	void Update(){
 		if (rngTimer <= 0 && activated == false) {
 			activated = true;
+			Camera.main.BroadcastMessage("PlaySound", starDing);
 
 			meshRenderer.enabled = true;
 			foreach (Light thislight in lights) {

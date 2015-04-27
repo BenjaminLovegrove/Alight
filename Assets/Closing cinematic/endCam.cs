@@ -11,7 +11,7 @@ public class endCam : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			Application.LoadLevel("Main_Menu");
+			Application.LoadLevel("Menu_Main");
 		}
 	}
 }

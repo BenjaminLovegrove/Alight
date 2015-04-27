@@ -44,7 +44,7 @@ public class SwarmManagement : MonoBehaviour {
 
 			secondarySwarmActive = true;
 
-			minSecondaryCollideTimer = 4f;
+			minSecondaryCollideTimer = 3f;
 		}
 
 		//See if secondary swarm is dead.

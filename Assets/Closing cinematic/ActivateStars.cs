@@ -17,6 +17,12 @@ public class ActivateStars : MonoBehaviour {
 			foreach (GameObject star in stars) {
 				star.SendMessage ("Activate", SendMessageOptions.DontRequireReceiver);
 			}
+
+			Invoke ("GoToMenu", 15f);
 		}
+	}
+
+	void GoToMenu (){
+		Application.LoadLevel ("Menu_Main");
 	}
 }
