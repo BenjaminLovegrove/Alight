@@ -39,7 +39,7 @@ public class Frog : MonoBehaviour {
 				}
 			}
 			//Attack and destroy nearest firefly
-			if (fireFlyDistance < 20f && closestFireFly != null){
+			if (fireFlyDistance < 15f && closestFireFly != null){
 				frogTongue.SetPosition(1, closestFireFly.transform.position);
 				tongueTimer = 0.2f;
 				Destroy (closestFireFly);

@@ -10,7 +10,7 @@ public class Croaking : MonoBehaviour {
 
 		if (rngTimer <= 0) {
 			audio.Play();
-			rngTimer = Random.Range (3f, 9f);
+			rngTimer = Random.Range (2.5f, 7f);
 		}
 	}
 }

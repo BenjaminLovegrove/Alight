@@ -1,38 +1,38 @@
 fileFormatVersion: 2
-guid: e71a34a6017fff34981d028e8945725b
+guid: a3c5d22a4cb6677498c3e5609753ccf2
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: TwigLight
-    100004: Twig-01
-    100006: Twig-02
-    100008: Twig-03
-    100010: Twig-04
-    400000: //RootNode
-    400002: TwigLight
-    400004: Twig-01
-    400006: Twig-02
-    400008: Twig-03
-    400010: Twig-04
-    2300000: //RootNode
-    2300002: TwigLight
-    2300004: Twig-01
-    2300006: Twig-02
-    2300008: Twig-03
-    2300010: Twig-04
-    3300000: //RootNode
-    3300002: TwigLight
-    3300004: Twig-01
-    3300006: Twig-02
-    3300008: Twig-03
-    3300010: Twig-04
-    4300000: TwigLantern
-    4300002: TwigLight
-    4300004: Twig-04
-    4300006: Twig-03
-    4300008: Twig-02
-    4300010: Twig-01
+    100000: Twig-01
+    100002: Twig-02
+    100004: Twig-03
+    100006: Twig-04
+    100008: //RootNode
+    100010: TwigLight
+    400000: Twig-01
+    400002: Twig-02
+    400004: Twig-03
+    400006: Twig-04
+    400008: //RootNode
+    400010: TwigLight
+    2300000: Twig-01
+    2300002: Twig-02
+    2300004: Twig-03
+    2300006: Twig-04
+    2300008: //RootNode
+    2300010: TwigLight
+    3300000: Twig-01
+    3300002: Twig-02
+    3300004: Twig-03
+    3300006: Twig-04
+    3300008: //RootNode
+    3300010: TwigLight
+    4300000: TWIG_LANTERN
+    4300002: Twig-04
+    4300004: Twig-03
+    4300006: Twig-02
+    4300008: Twig-01
+    4300010: TwigLight
     9500000: //RootNode
   materials:
     importMaterials: 1
