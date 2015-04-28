@@ -66,8 +66,8 @@ public class Swarming : MonoBehaviour {
 		//Change to follow secondary spawn point.
 		swarmPoint = secondarySwarmPoint;
 		mainSwarm = false;
-		swarmRange = 8f;
-		swarmSpeed = 1.5f;
+		swarmRange = 7f;
+		swarmSpeed = 1.2f;
 		//fireflyHalo.color = Color.red;
 		fireflyHalo.range = originalHaloSize * 1.5f;
 	}

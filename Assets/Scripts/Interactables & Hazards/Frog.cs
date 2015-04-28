@@ -4,8 +4,8 @@ using System.Collections;
 public class Frog : MonoBehaviour {
 
 	public LineRenderer frogTongue;
-	public float counter = 2f;
-	public float tongueTimer = 0.4f;
+	public float counter = 3f;
+	public float tongueTimer = 0.3f;
 	public float dist;
 	public float lineDrawSpeed = 6f;
 	public GameObject[] fireflys;
@@ -27,7 +27,7 @@ public class Frog : MonoBehaviour {
 		tongueTimer -= Time.deltaTime;
 		//Resets counter and selects all fireflies
 		if (counter <= 0){
-			counter = 2f;
+			counter = 3f;
 			fireflys = GameObject.FindGameObjectsWithTag("FireFly");
 			//Finds all fireflies' distances
 			foreach (GameObject firefly in fireflys){
@@ -39,11 +39,12 @@ public class Frog : MonoBehaviour {
 				}
 			}
 			//Attack and destroy nearest firefly
-			if (fireFlyDistance < 30f && closestFireFly != null){
+			if (fireFlyDistance < 20f && closestFireFly != null){
 				frogTongue.SetPosition(1, closestFireFly.transform.position);
-				tongueTimer = 0.4f;
+				tongueTimer = 0.3f;
 				Destroy (closestFireFly);
 				fireFlyDistance = 99999;
+				audio.Play();
 			}
 		}
 		//Resets tongue's position after countdown
