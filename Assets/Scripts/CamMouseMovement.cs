@@ -18,8 +18,12 @@ public class CamMouseMovement : MonoBehaviour {
 		mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 30));
 		screenCenterPoint = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, 30));
 
+		if (transform.position.y < -25) {
+			transform.position = new Vector3(transform.position.x, -25, transform.position.z);
+		}
+
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			Application.LoadLevel("Main_Menu");
+			Application.LoadLevel("Menu_Main");
 		}
 	}
 
