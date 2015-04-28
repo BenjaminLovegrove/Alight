@@ -5,7 +5,7 @@ public class Frog : MonoBehaviour {
 
 	public LineRenderer frogTongue;
 	public float counter = 3f;
-	public float tongueTimer = 0.3f;
+	public float tongueTimer = 0.2f;
 	public float dist;
 	public float lineDrawSpeed = 6f;
 	public GameObject[] fireflys;
@@ -17,7 +17,7 @@ public class Frog : MonoBehaviour {
 	void Start () {
 		frogTongue = GetComponent<LineRenderer> ();
 		frogTongue.SetPosition (0, transform.position);
-		frogTongue.SetWidth (0.5f, 0.5f);
+		frogTongue.SetWidth (0.3f, 0.3f);
 	}
 	
 	// Update is called once per frame
@@ -41,7 +41,7 @@ public class Frog : MonoBehaviour {
 			//Attack and destroy nearest firefly
 			if (fireFlyDistance < 20f && closestFireFly != null){
 				frogTongue.SetPosition(1, closestFireFly.transform.position);
-				tongueTimer = 0.3f;
+				tongueTimer = 0.2f;
 				Destroy (closestFireFly);
 				fireFlyDistance = 99999;
 				audio.Play();

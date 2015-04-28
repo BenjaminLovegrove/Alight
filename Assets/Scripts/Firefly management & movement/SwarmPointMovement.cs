@@ -23,11 +23,11 @@ public class SwarmPointMovement : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (Input.GetMouseButton (0) && mainSwarm) {
-			rb.AddForce (dir.normalized * Time.deltaTime * 20);
+			rb.AddForce (dir.normalized * Time.deltaTime * 18);
 		}
 		
 		if (Input.GetMouseButton (1) && !mainSwarm) {
-			rb.AddForce (dir.normalized * Time.deltaTime * 20);
+			rb.AddForce (dir.normalized * Time.deltaTime * 18);
 		}
 	}
 }

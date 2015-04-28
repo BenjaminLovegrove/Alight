@@ -19,7 +19,7 @@ public class Swarming : MonoBehaviour {
 	float originalHaloSize;
 
 	//Editable variables
-	float swarmSpeed = 2f;
+	float swarmSpeed = 1.5f;
 	float swarmNormSpeed;
 	float swarmRange = 14f;
 	float swarmNormRange;
