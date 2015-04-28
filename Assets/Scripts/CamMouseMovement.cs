@@ -15,8 +15,8 @@ public class CamMouseMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, 30));
-		screenCenterPoint = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, 30));
+		mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs (Camera.main.transform.position.z)));
+		screenCenterPoint = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, Mathf.Abs (Camera.main.transform.position.z)));
 
 		if (transform.position.y < -25) {
 			transform.position = new Vector3(transform.position.x, -25, transform.position.z);

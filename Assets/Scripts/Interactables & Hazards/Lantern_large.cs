@@ -23,6 +23,7 @@ public class Lantern_large : MonoBehaviour {
 		if (!startActive) {
 			particles.gameObject.SetActive (false);
 		}
+
 	}
 
 	void Update(){
@@ -31,12 +32,11 @@ public class Lantern_large : MonoBehaviour {
 			lanternLight.intensity = Mathf.Lerp(lanternLight.intensity, desiredIntensity, Time.deltaTime * 1f);
 		}
 
-		/*This is for performance if needed. Turns lanterns that you've gone a bit past off.
-		 * if (Vector3.Distance(this.transform.position, mainSwarm.transform.position) > 250) {
-			lanternLight.enabled = false;
-			particles.gameObject.SetActive(false);
+		if (Vector3.Distance (this.transform.position, Camera.main.transform.position) > 70 && lanternLight.enabled == true) {
+			particles.gameObject.SetActive (false);
+		} else if (Vector3.Distance (this.transform.position, Camera.main.transform.position) < 70 && lanternLight.enabled == true) {
+			particles.gameObject.SetActive (true);
 		}
-		*/
 	}
 	
 	void OnTriggerEnter (Collider col) {
