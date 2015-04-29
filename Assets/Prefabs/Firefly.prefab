@@ -447,7 +447,7 @@ MonoBehaviour:
   FireflyDragger: {fileID: 0}
   mainSwarm: 0
   ffDeath: {fileID: 8300000, guid: 87a07a80f5f614f4f9615c583cb89ea7, type: 3}
-  initialFirefly: 1
+  initialFirefly: 0
   areaLight: {fileID: 0}
 --- !u!114 &11433806
 MonoBehaviour:
