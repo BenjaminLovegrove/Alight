@@ -23,14 +23,13 @@ public class VoiceoverManager : MonoBehaviour {
 				m_AudioSource.Play();
 			}
 			else {
-				ulong delay = 44100 * (ulong)(delayBetweenClipsInSeconds);
-				m_AudioSource.Play(delay);
+				m_AudioSource.PlayDelayed(delayBetweenClipsInSeconds);
 				m_WasPlaying = true;
 			}
 		}
 	}
 
-	void PlayVoice (AudioClip SFX) {
+	public void PlayVoice (AudioClip SFX) {
 		m_VoiceClips.Enqueue(SFX);
 	}
 }

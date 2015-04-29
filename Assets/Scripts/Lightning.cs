@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Lightning : MonoBehaviour {
 
+	public float			minSecondsBetweenFlash = 2.5f;
+	public float			maxSecondsBetweenFlash = 4.0f;
+	public float			flashSpeed;
+	public float			maxIntensity = 5.0f;
+	public float			timeBetweenDoubleFlashMin = 0.1f;
+	public float			timeBetweenDoubleFlashMax = 0.2f;
+	public List<AudioClip>	thunderAudio;
 
-	public float	minSecondsBetweenFlash;
-	public float	maxSecondsBetweenFlash;
-	public float	flashSpeed;
-	public float	maxIntensity = 5f;
-	public float	timeBetweenDoubleFlashMin = 0.1f;
-	public float	timeBetweenDoubleFlashMax = 0.2f;
-
-	private float	m_Timer;
-	private Light	m_Lightning;
-
+	private float			m_Timer;
+	private float			m_ThunderDelay = 0.5f;
+	private Light			m_Lightning;
+	private AudioSource		m_AudioSource;
 
 	void Awake() {
-		m_Lightning = GetComponent<Light>();
+		m_Lightning 	= GetComponent<Light>();
+		m_AudioSource 	= GetComponent<AudioSource>();
 	}
 
 	// Use this for initialization
@@ -40,6 +43,9 @@ public class Lightning : MonoBehaviour {
 
 		float timeBetweenDoubleFlash = Random.Range(timeBetweenDoubleFlashMin, timeBetweenDoubleFlashMax);
 		float t = 0.0f;
+
+		_PlayRandomThunder();
+
 		for (float timer = 0.0f; timer < flashSpeed; timer += Time.deltaTime) {
 			m_Lightning.intensity = Mathf.Lerp (maxIntensity, 0.0f, t);
 
@@ -61,6 +67,24 @@ public class Lightning : MonoBehaviour {
 
 		m_Lightning.intensity = maxIntensity;
 		m_Lightning.enabled = false;
+	}
+
+	public float GetThunderDelay() {
+		return m_ThunderDelay;
+	}
+
+	public void SetThunderDelay(float delay) {
+		m_ThunderDelay = delay;
+	}
+
+	private void _PlayRandomThunder() {
+		if (thunderAudio.Count == 0 || m_AudioSource.isPlaying)
+			return;
+
+		int rand = Random.Range(0, thunderAudio.Count);
+
+		m_AudioSource.clip = thunderAudio[rand];
+		m_AudioSource.PlayDelayed(m_ThunderDelay);
 	}
 
 	private void _ResetTimer() {
