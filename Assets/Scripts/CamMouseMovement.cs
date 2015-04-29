@@ -7,10 +7,13 @@ public class CamMouseMovement : MonoBehaviour {
 	Vector3 mousePos;
 	Vector3 screenCenterPoint;
 	public GameObject playerCursor;
+	GameObject mainSwarm;
+	Vector3 mainSwarmxy;
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
 		rb.isKinematic = true;
+		mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
 	}
 
 	// Update is called once per frame
@@ -25,6 +28,8 @@ public class CamMouseMovement : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.LoadLevel("Menu_Main");
 		}
+
+		mainSwarmxy = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, this.transform.position.z);
 	}
 
 	void FixedUpdate(){
@@ -34,6 +39,11 @@ public class CamMouseMovement : MonoBehaviour {
 			} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 5) {
 				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
 			}
+		}
+
+				
+		if (Vector3.Distance (transform.position, mainSwarmxy) > 30) {
+			rb.AddForce ((mainSwarmxy - transform.position) * Time.deltaTime * 2f);
 		}
 
 		//This makes x a bit too sensative and y not enough.
