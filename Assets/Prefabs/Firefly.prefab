@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198614}
   m_LocalRotation: {x: .112354152, y: .698123693, z: .698123515, w: -.112354152}
-  m_LocalPosition: {x: -788.75, y: 8.65999985, z: -.99000001}
+  m_LocalPosition: {x: -9, y: -20.9899998, z: 0}
   m_LocalScale: {x: 1, y: .700000048, z: 1}
   m_Children:
   - {fileID: 498612}
@@ -373,7 +373,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: .699999988
-  m_Range: 25
+  m_Range: 18
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -406,8 +406,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .937525392, g: 1, b: .352941155, a: 1}
-  m_Intensity: .899999976
+  m_Color: {r: 1, g: .908316255, b: .16911763, a: 1}
+  m_Intensity: .850000024
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -447,7 +447,7 @@ MonoBehaviour:
   FireflyDragger: {fileID: 0}
   mainSwarm: 0
   ffDeath: {fileID: 8300000, guid: 87a07a80f5f614f4f9615c583cb89ea7, type: 3}
-  initialFirefly: 0
+  initialFirefly: 1
   areaLight: {fileID: 0}
 --- !u!114 &11433806
 MonoBehaviour:

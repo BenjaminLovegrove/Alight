@@ -7,9 +7,11 @@ public class Lightning : MonoBehaviour {
 	public float	minSecondsBetweenFlash;
 	public float	maxSecondsBetweenFlash;
 	public float	flashSpeed;
+	public float	maxIntensity = 5f;
 
 	private float	m_Timer;
 	private Light	m_Lightning;
+
 
 	void Awake() {
 		m_Lightning = GetComponent<Light>();
@@ -36,14 +38,14 @@ public class Lightning : MonoBehaviour {
 
 		float t = 0.0f;
 		for (float timer = 0.0f; timer < flashSpeed; timer += Time.deltaTime) {
-			m_Lightning.intensity = Mathf.Lerp (1.0f, 0.0f, t);
+			m_Lightning.intensity = Mathf.Lerp (maxIntensity, 0.0f, t);
 
 			t += Time.deltaTime * flashSpeed * 3.0f;
 
 			yield return 0;
 		}
 
-		m_Lightning.intensity = 1.0f;
+		m_Lightning.intensity = maxIntensity;
 		m_Lightning.enabled = false;
 	}
 
