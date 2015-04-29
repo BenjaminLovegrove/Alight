@@ -8,6 +8,8 @@ public class Lightning : MonoBehaviour {
 	public float	maxSecondsBetweenFlash;
 	public float	flashSpeed;
 	public float	maxIntensity = 5f;
+	public float	timeBetweenDoubleFlashMin = 0.1f;
+	public float	timeBetweenDoubleFlashMax = 0.2f;
 
 	private float	m_Timer;
 	private Light	m_Lightning;
@@ -36,12 +38,24 @@ public class Lightning : MonoBehaviour {
 	IEnumerator LightningFlash() {
 		m_Lightning.enabled = true;
 
+		float timeBetweenDoubleFlash = Random.Range(timeBetweenDoubleFlashMin, timeBetweenDoubleFlashMax);
 		float t = 0.0f;
 		for (float timer = 0.0f; timer < flashSpeed; timer += Time.deltaTime) {
 			m_Lightning.intensity = Mathf.Lerp (maxIntensity, 0.0f, t);
 
 			t += Time.deltaTime * flashSpeed * 3.0f;
 
+			yield return 0;
+
+			if (timer >= timeBetweenDoubleFlash)
+				break;
+		}
+		t = 0.0f;
+		for (float timer = 0.0f; timer < flashSpeed; timer += Time.deltaTime) {
+			m_Lightning.intensity = Mathf.Lerp (maxIntensity, 0.0f, t);
+			
+			t += Time.deltaTime * flashSpeed * 3.0f;
+			
 			yield return 0;
 		}
 
