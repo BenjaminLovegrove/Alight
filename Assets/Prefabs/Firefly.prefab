@@ -341,9 +341,9 @@ TrailRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Time: .649999976
-  m_StartWidth: .150000006
-  m_EndWidth: 0
+  m_Time: .300000012
+  m_StartWidth: .300000012
+  m_EndWidth: .0299999993
   m_Colors:
     m_Color[0]:
       serializedVersion: 2

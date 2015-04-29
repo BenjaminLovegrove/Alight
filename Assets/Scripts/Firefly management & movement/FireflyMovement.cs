@@ -50,7 +50,7 @@ public class FireflyMovement : MonoBehaviour {
 
 
 		//Trail only when moving
-		if (rb.velocity.magnitude > 2){
+		if (rb.velocity.magnitude > 1.2f){
 			trail.enabled = true;
 		} else {
 			trail.enabled = false;
