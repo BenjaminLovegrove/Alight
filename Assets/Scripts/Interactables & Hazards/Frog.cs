@@ -4,8 +4,9 @@ using System.Collections;
 public class Frog : MonoBehaviour {
 
 	public LineRenderer frogTongue;
-	public float counter = 3f;
-	public float tongueTimer = 0.2f;
+	public float counter;
+	public float tongueTimer;
+	public float setFrogStrikeTime;
 	public float dist;
 	public float lineDrawSpeed = 6f;
 	public GameObject[] fireflys;
@@ -27,7 +28,7 @@ public class Frog : MonoBehaviour {
 		tongueTimer -= Time.deltaTime;
 		//Resets counter and selects all fireflies
 		if (counter <= 0){
-			counter = 3f;
+			counter = setFrogStrikeTime;
 			fireflys = GameObject.FindGameObjectsWithTag("FireFly");
 			//Finds all fireflies' distances
 			foreach (GameObject firefly in fireflys){
