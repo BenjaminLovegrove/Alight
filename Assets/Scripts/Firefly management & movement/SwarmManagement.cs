@@ -48,8 +48,9 @@ public class SwarmManagement : MonoBehaviour {
 		}
 
 		//See if secondary swarm is dead.
-		if (secondarySwarm01 == null && secondarySwarm02 == null && secondarySwarm03 == null) {
+		if (secondarySwarm01 == null && secondarySwarm02 == null && secondarySwarm03 == null && secondarySwarmActive == true) {
 			secondarySwarmActive = false;
+			Camera.main.SendMessage("ReturnToSwarm");
 		}
 
 		if (swarmCount <= 0 && respawnTrigger == false) {

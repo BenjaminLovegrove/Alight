@@ -11,7 +11,12 @@ public class CamMouseMovement : MonoBehaviour {
 	Vector3 mainSwarmxy;
 	float minCamHeight = -20;
 	float camLerp = 0;
+	float camReturnLerp = 0;
+	Vector3 startReturnPos;
+	Vector3 ReturnPos;
 	public float speed = 0.7f;
+	bool camReturning = false;
+
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
@@ -21,20 +26,18 @@ public class CamMouseMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//Get mouse pos & center screen
 		mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs (Camera.main.transform.position.z)));
 		screenCenterPoint = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, Mathf.Abs (Camera.main.transform.position.z)));
-
+		
+		//Cam restraint Stuff
 		if (transform.position.y < minCamHeight) {
 			transform.position = new Vector3(transform.position.x, minCamHeight, transform.position.z);
 		}
-
-		if (Input.GetKeyDown(KeyCode.Escape)) {
-			Application.LoadLevel("Menu_Main");
-		}
-
-		mainSwarmxy = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, this.transform.position.z);
 		
+		mainSwarmxy = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, this.transform.position.z);
 
+		//If in swamp area change min cam height to match lower ground plane
 		if (transform.position.x > 82){
 			minCamHeight = -25;
 		} else if (transform.position.x < 82 && transform.position.y < -20) {
@@ -43,9 +46,26 @@ public class CamMouseMovement : MonoBehaviour {
 		} else {
 			camLerp = 0;
 		}
+
+		//Return camera to main swarm (after second swarm death)
+		if (camReturning){
+			camReturnLerp += Time.deltaTime * 0.7f;
+			transform.position = Vector3.Lerp (startReturnPos, ReturnPos, camReturnLerp);
+
+			if (camReturnLerp > 2f){
+				rb.isKinematic = false;
+				camReturning = false;
+			}
+		}
+
+		//Esc key
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.LoadLevel("Menu_Main");
+		}
 	}
 
 	void FixedUpdate(){
+		//Move the camera
 		if (playerCursor.renderer.isVisible) {
 			if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 12) {
 				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
@@ -55,7 +75,7 @@ public class CamMouseMovement : MonoBehaviour {
 		}
 
 				
-		if (Vector3.Distance (transform.position, mainSwarmxy) > 30) {
+		if (Vector3.Distance (transform.position, mainSwarmxy) > 40) {
 			rb.AddForce ((mainSwarmxy - transform.position) * Time.deltaTime * 2f);
 		}
 
@@ -64,6 +84,19 @@ public class CamMouseMovement : MonoBehaviour {
 			rb.AddForce((mousePos - screenCenterPoint) * Time.deltaTime * 2);
 		}
 		*/
+	}
+
+	void ReturnToSwarm(){ 
+		startReturnPos = transform.position;
+
+		ReturnPos = mainSwarmxy;
+		if (ReturnPos.y < minCamHeight){
+			ReturnPos = new Vector3(ReturnPos.x, minCamHeight, ReturnPos.z);
+		}
+
+		rb.isKinematic = true;
+		camReturning = true;
+		camReturnLerp = 0;
 	}
 
 	void Lock(){ //this is called when the player reaches the end to stop the cam moving and load the cinematic
