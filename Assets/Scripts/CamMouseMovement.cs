@@ -9,6 +9,9 @@ public class CamMouseMovement : MonoBehaviour {
 	public GameObject playerCursor;
 	GameObject mainSwarm;
 	Vector3 mainSwarmxy;
+	float minCamHeight = -20;
+	float camLerp = 0;
+	public float speed = 0.7f;
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
@@ -21,8 +24,8 @@ public class CamMouseMovement : MonoBehaviour {
 		mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs (Camera.main.transform.position.z)));
 		screenCenterPoint = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, Mathf.Abs (Camera.main.transform.position.z)));
 
-		if (transform.position.y < -25) {
-			transform.position = new Vector3(transform.position.x, -25, transform.position.z);
+		if (transform.position.y < minCamHeight) {
+			transform.position = new Vector3(transform.position.x, minCamHeight, transform.position.z);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -30,6 +33,16 @@ public class CamMouseMovement : MonoBehaviour {
 		}
 
 		mainSwarmxy = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, this.transform.position.z);
+		
+
+		if (transform.position.x > -400){
+			minCamHeight = -25;
+		} else if (transform.position.x < -400 && transform.position.y < -20) {
+			camLerp += Time.deltaTime * speed;
+			minCamHeight = Mathf.Lerp (-25, -20, camLerp);
+		} else {
+			camLerp = 0;
+		}
 	}
 
 	void FixedUpdate(){
