@@ -18308,6 +18308,7 @@ Transform:
   - {fileID: 694681581}
   - {fileID: 303434477}
   - {fileID: 1903877944}
+  - {fileID: 1429562797}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!114 &337653271
@@ -31288,7 +31289,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 493170, guid: d0d3cff9ea941c54795acd1eac8dad3e, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11493172, guid: d0d3cff9ea941c54795acd1eac8dad3e, type: 2}
       propertyPath: playerCursor
@@ -46278,6 +46279,7 @@ GameObject:
   - 4: {fileID: 751935696}
   - 108: {fileID: 751935695}
   - 114: {fileID: 751935694}
+  - 82: {fileID: 751935697}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -46302,6 +46304,8 @@ MonoBehaviour:
   maxIntensity: 2
   timeBetweenDoubleFlashMin: .100000001
   timeBetweenDoubleFlashMax: .200000003
+  thunderAudio:
+  - {fileID: 8300000, guid: 4ccffec84f5370b4e8ad30bbe5c99aa1, type: 3}
 --- !u!108 &751935695
 Light:
   m_ObjectHideFlags: 0
@@ -46344,11 +46348,69 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751935693}
   m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381661, w: .875426114}
-  m_LocalPosition: {x: -262, y: 418, z: 433.070312}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 1429562797}
+  m_RootOrder: 0
+--- !u!82 &751935697
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751935693}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &752354542
 GameObject:
   m_ObjectHideFlags: 0
@@ -83951,6 +84013,53 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: .5
   m_Center: {x: 0, y: 0}
+--- !u!1 &1429562795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1429562797}
+  - 114: {fileID: 1429562796}
+  m_Layer: 0
+  m_Name: Weather Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1429562796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429562795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929254bbc681b514d9f7aa6038c27681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rain:
+  - {fileID: 378571977}
+  - {fileID: 1668487296}
+  - {fileID: 548875457}
+  - {fileID: 49063810}
+  - {fileID: 1444526127}
+  - {fileID: 414138178}
+--- !u!4 &1429562797
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429562795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 751935696}
+  m_Father: {fileID: 337653270}
+  m_RootOrder: 3
 --- !u!1001 &1434533082
 Prefab:
   m_ObjectHideFlags: 0
