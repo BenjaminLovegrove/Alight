@@ -16872,6 +16872,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 303434477}
   - 82: {fileID: 303434478}
+  - 114: {fileID: 303434479}
   m_Layer: 0
   m_Name: VoiceoverManager
   m_TagString: Untagged
@@ -16950,6 +16951,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &303434479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 303434476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3c216ec2f9f884688a34f0710a2503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBetweenClipsInSeconds: 1
 --- !u!1 &310460265
 GameObject:
   m_ObjectHideFlags: 0
@@ -46286,6 +46299,8 @@ MonoBehaviour:
   maxSecondsBetweenFlash: 4
   flashSpeed: 1
   maxIntensity: 2
+  timeBetweenDoubleFlashMin: .100000001
+  timeBetweenDoubleFlashMax: .200000003
 --- !u!108 &751935695
 Light:
   m_ObjectHideFlags: 0

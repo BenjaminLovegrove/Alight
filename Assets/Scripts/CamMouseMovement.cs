@@ -35,9 +35,9 @@ public class CamMouseMovement : MonoBehaviour {
 		mainSwarmxy = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, this.transform.position.z);
 		
 
-		if (transform.position.x > -400){
+		if (transform.position.x > 82){
 			minCamHeight = -25;
-		} else if (transform.position.x < -400 && transform.position.y < -20) {
+		} else if (transform.position.x < 82 && transform.position.y < -20) {
 			camLerp += Time.deltaTime * speed;
 			minCamHeight = Mathf.Lerp (-25, -20, camLerp);
 		} else {
