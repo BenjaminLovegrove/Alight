@@ -11,6 +11,7 @@ public class FireflyMovement : MonoBehaviour {
 	public AudioClip ffDeath;
 	bool lightOn = false;
 	public bool initialFirefly = false; //Needs to be manually set to true on starting fireflies so they start without light.
+	TrailRenderer trail;
 
 	//For light fade in
 	public Light areaLight;
@@ -20,8 +21,9 @@ public class FireflyMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		FireflyDragger = GameObject.FindGameObjectWithTag ("FireflyDragger");
 		scrSwarm = GetComponent<Swarming>();
+		trail = GetComponent<TrailRenderer> ();
 
-		
+		//Set starting fireflies to start with no light
 		areaLight = GetComponentInChildren<Light>();
 		startIntensity = areaLight.intensity;
 		if (initialFirefly) {
@@ -30,21 +32,34 @@ public class FireflyMovement : MonoBehaviour {
 	}
 	
 	void Update () {
+		//Check if main swarm
 		if (scrSwarm.mainSwarm) {
 			mainSwarm = true;
 		} else {
 			mainSwarm = false;
 		}
 
+		//Get direction
 		Vector3 FireflyDraggerPos = FireflyDragger.transform.position;
 		dir = FireflyDraggerPos - transform.position;
 
+		//Lerp up light at the start
 		if (lightOn == true && areaLight.intensity < startIntensity) {
 			areaLight.intensity = Mathf.Lerp(areaLight.intensity, startIntensity, Time.deltaTime * 0.25f);
 		}
+
+
+		//Trail only when moving
+		if (rb.velocity.magnitude > 2){
+			trail.enabled = true;
+		} else {
+			trail.enabled = false;
+		}
+
 	}
 
 	void FixedUpdate(){
+		//Movement
 		if (Input.GetMouseButton (0) && mainSwarm) {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
