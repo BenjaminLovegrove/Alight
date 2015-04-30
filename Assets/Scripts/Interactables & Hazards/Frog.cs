@@ -67,7 +67,10 @@ public class Frog : MonoBehaviour {
 		croakingSFX.gameObject.SetActive (false);
 
 		Transform frogParticles = transform.Find ("FrogParticles");
-		Destroy (frogParticles.gameObject);
+		if (frogParticles != null) {
+			if (frogParticles.gameObject != null)
+				Destroy (frogParticles.gameObject);
+		}
 	}
 
 	void PlaySquish(){

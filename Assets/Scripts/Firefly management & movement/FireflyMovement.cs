@@ -3,19 +3,19 @@ using System.Collections;
 
 public class FireflyMovement : MonoBehaviour {
 
-	public Rigidbody rb;
-	public GameObject FireflyDragger;
-	Vector3 dir;
-	public bool mainSwarm;
-	Swarming scrSwarm;
-	public AudioClip ffDeath;
-	bool lightOn = false;
-	public bool initialFirefly = false; //Needs to be manually set to true on starting fireflies so they start without light.
-	TrailRenderer trail;
+	public 	Rigidbody 		rb;
+	public 	GameObject 		FireflyDragger;
+	private Vector3 		dir;
+	public 	bool 			mainSwarm;
+	private	Swarming 		scrSwarm;
+	public 	AudioClip 		ffDeath;
+	private	bool 			lightOn = false;
+	public 	bool 			initialFirefly = false; //Needs to be manually set to true on starting fireflies so they start without light.
+	private	TrailRenderer 	trail;
 
 	//For light fade in
-	public Light areaLight;
-	float startIntensity;
+	public 	Light 			areaLight;
+	private float 			startIntensity;
 
 	void Start () {
 		rb = GetComponent<Rigidbody>();

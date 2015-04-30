@@ -7,12 +7,10 @@ public class WeatherTrigger : MonoBehaviour {
 	public 	bool			increaseRain	= false;
 	public 	float			thunderDelay	= 0.0f;
 	public 	float			lightningFreq	= 0.0f;
-
-	private BoxCollider		m_Trigger;
+	
 	private WeatherManager	m_WeatherManager;
 
 	void Awake() {
-		m_Trigger 			= GetComponent<BoxCollider>();
 		m_WeatherManager 	= WeatherManager.instance;
 	}
 

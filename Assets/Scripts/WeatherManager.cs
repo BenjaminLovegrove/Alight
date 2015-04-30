@@ -52,10 +52,22 @@ public class WeatherManager : MonoBehaviour {
 				}
 
 				if (!flag)
-					rainSound.Stop();
+					StartCoroutine(FadeOutRainSound());
 				break;
 			} 
 		}
+	}
+
+	IEnumerator FadeOutRainSound() {
+		float timer = 0.0f;
+		while (rainSound.volume > 0.0f) {
+			timer += Time.deltaTime * 0.5f;
+			Mathf.Lerp(rainSound.volume, 0.0f, timer);
+
+			yield return 0;
+		}
+
+		rainSound.Stop();
 	}
 
 	public void IncreaseRain() {
