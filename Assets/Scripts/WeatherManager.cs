@@ -19,6 +19,7 @@ public class WeatherManager : MonoBehaviour {
 	#endregion
 
 	public 	List<GameObject>	rain;
+	public	AudioSource			rainSound;
 
 	private Lightning			m_Lightning;
 
@@ -43,13 +44,42 @@ public class WeatherManager : MonoBehaviour {
 			r = rain[i];
 			if (r.activeSelf) {
 				r.SetActive(false);
+
+				bool flag = false;
+				foreach (GameObject obj in rain) {
+					if (obj.activeSelf == true)
+						flag = true;
+				}
+
+				if (!flag)
+					rainSound.Stop();
 				break;
 			} 
 		}
 	}
 
+	public void IncreaseRain() {
+		GameObject r;
+		for (int i = rain.Count-1; i >= 0; --i) {
+			r = rain[i];
+			if (!r.activeSelf) {
+				r.SetActive(true);
+				break;
+			}
+		}
+	}
+
 	public void IncreaseThunderDelay(float numSeconds) {
 		float delay = m_Lightning.GetThunderDelay() + numSeconds;
+		m_Lightning.SetThunderDelay(delay);
+	}
+
+	public void ReduceThunderDelay(float numSeconds) {
+		float delay = m_Lightning.GetThunderDelay() - numSeconds;
+
+		if (delay < 0.0f)
+			delay = 0.0f;
+
 		m_Lightning.SetThunderDelay(delay);
 	}
 
@@ -59,5 +89,19 @@ public class WeatherManager : MonoBehaviour {
 
 		m_Lightning.minSecondsBetweenFlash += numSeconds;
 		m_Lightning.maxSecondsBetweenFlash += numSeconds;
+	}
+
+	public void IncreaseLightningFrequency(float numSeconds) {
+		if (numSeconds <= 0.0f)
+			return;
+
+		m_Lightning.minSecondsBetweenFlash -= numSeconds;
+		m_Lightning.maxSecondsBetweenFlash -= numSeconds;
+
+		if (m_Lightning.minSecondsBetweenFlash < 0.0f)
+			m_Lightning.minSecondsBetweenFlash = 0.0f;
+
+		if (m_Lightning.maxSecondsBetweenFlash < 0.0f)
+			m_Lightning.maxSecondsBetweenFlash = 0.0f;
 	}
 }
