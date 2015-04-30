@@ -52,7 +52,7 @@ public class CamMouseMovement : MonoBehaviour {
 			camReturnLerp += Time.deltaTime * 0.7f;
 			transform.position = Vector3.Lerp (startReturnPos, ReturnPos, camReturnLerp);
 
-			if (camReturnLerp > 2f){
+			if (camReturnLerp > 1f){
 				rb.isKinematic = false;
 				camReturning = false;
 			}

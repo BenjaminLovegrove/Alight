@@ -97,11 +97,13 @@ public class SwarmManagement : MonoBehaviour {
 		respawnTrigger = false;
 	}
 
-	void OnTriggerEnter(Collider col){
+	void OnTriggerStay(Collider col){
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0 && secondarySwarmActive) {
 			fireFlies[0].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
-			fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point isntead of first
-			fireFlies[2].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			if (fireFlies[2] != null){
+				fireFlies[2].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			}
 
 			secondarySwarmActive = false;
 

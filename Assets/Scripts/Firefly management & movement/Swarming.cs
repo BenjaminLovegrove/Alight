@@ -69,7 +69,7 @@ public class Swarming : MonoBehaviour {
 		swarmRange = 7f;
 		swarmSpeed = 1.5f;
 		//fireflyHalo.color = Color.red;
-		fireflyHalo.range = originalHaloSize * 1.5f;
+		fireflyHalo.range = originalHaloSize * 2f;
 	}
 
 	void SwarmReturn(){
