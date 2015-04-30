@@ -4,65 +4,64 @@ using System.Collections.Generic;
 
 public class SwarmingLO : MonoBehaviour {
 
-	private class Boid {
-		public 	Vector3 velocity;
-		public 	Vector3	posistion;
-	}
+	public 	float 				speed 		= 10.0f;
+	public	float				nearRange	= 10.0f;
+	public	GameObject			boidPreFab;
 
-	public 	float 		speed 		= 10.0f;
-	public	float		nearRange	= 10.0f;
-
-	private List<Boid>	boids;
-	private Transform	tr;
+	private List<BoidLO>		m_Boids;
+	private Transform			m_Transform;
 
 	void Awake() {
-		boids = new List<Boid>();
-		tr = GetComponent<Transform>();
+		m_Boids 			= new List<BoidLO>();
+		m_Transform 		= GetComponent<Transform>();
 	}
 
 	void Start() {
 		for (int i = 0; i < 15; ++i) {
-			Boid b = new Boid();
+			GameObject GO = (GameObject)Instantiate(boidPreFab,
+			                            			new Vector3(Random.Range(0.0f, 40.0f),
+			            										Random.Range(0.0f, 40.0f),
+			            										0.0f),
+			                            						Quaternion.identity);
 
-			//	Randomize starting position
-			b.posistion.x = Random.Range(0.0f, 40.0f);
-			b.posistion.y = Random.Range(0.0f, 40.0f);
-			b.posistion.z = Random.Range(0.0f, 40.0f);
+			GO.transform.parent = m_Transform;
+
+			BoidLO b = GO.AddComponent<BoidLO>();
 
 			//	Randomize starting velocity
 			b.velocity = new Vector3(Random.Range(-1.0f, 1.0f),
 			                         Random.Range(-1.0f, 1.0f),
-			                         Random.Range(-1.0f, 1.0f));
+			                         0.0f);
 			b.velocity.Normalize();
 			b.velocity *= speed;
 
-			boids.Add(b);
+			m_Boids.Add(b);
 		}
 	}
 
 	void Update() {
 		//	Loop through each boid
-		for (int i = 0; i < boids.Count; ++i) {
+		for (int i = 0; i < m_Boids.Count; ++i) {
 			//	Init average variables and comparer counter
 			int count = 0;
 			Vector3 averageVel = new Vector3(0.0f, 0.0f, 0.0f);
 			Vector3 averagePos = new Vector3(0.0f, 0.0f, 0.0f);
 
 			//	Loop through each boid again to compare
-			for (int j = 0; j < boids.Count; ++j) {
+			for (int j = 0; j < m_Boids.Count; ++j) {
 				//	Ignore results is comparing with self
 				if (i != j) {
 					//	Get vector of distance between the two boids
-					Vector3 delta = boids[j].posistion - boids[i].posistion;
+					Vector3 delta = m_Boids[j].transform.position - m_Boids[i].transform.position;
 
 					//	If it is within the range we care about
-					if (delta.magnitude < nearRange) {
+					if (true /*delta.magnitude < nearRange*/) {
 
-						if (Vector3.Dot(delta.normalized, boids[i].velocity.normalized) > 0.5f) {
+						if (true /*Vector3.Dot(delta.normalized, m_Boids[i].velocity.normalized) > 0.5f*/) {
 							count++;
 
-							averageVel += boids[j].velocity;
-							averagePos += boids[j].posistion;
+							averageVel += m_Boids[j].velocity;
+							averagePos += m_Boids[j].transform.position;
 						}
 					}
 				}
@@ -72,13 +71,14 @@ public class SwarmingLO : MonoBehaviour {
 					averageVel /= count;
 					averagePos /= count;
 
-					boids[i].velocity  = (boids[i].velocity * 0.99f) + (averageVel * 0.01f);
-					boids[i].velocity += (averagePos-boids[i].posistion).normalized * Time.deltaTime * 20;
+					m_Boids[i].velocity  = (m_Boids[i].velocity * 0.99f) + (averageVel * 0.01f);
+					m_Boids[i].velocity += (averagePos-m_Boids[i].transform.position).normalized * Time.deltaTime * 20;
 				}
-				if (boids[i].velocity.magnitude > speed) {
-					boids[i].velocity = boids[i].velocity.normalized * speed;
+				if (m_Boids[i].velocity.magnitude > speed) {
+					m_Boids[i].velocity = m_Boids[i].velocity.normalized * speed;
 				}
-				//TODO
+
+				m_Boids[i].GetComponent<Rigidbody>().velocity = m_Boids[i].velocity;
 			}
 		}
 	}
