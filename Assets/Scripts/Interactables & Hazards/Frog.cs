@@ -13,6 +13,8 @@ public class Frog : MonoBehaviour {
 	public float fireFlyDistance = 999999;
 	public float thisFireFlyDistance;
 	public GameObject closestFireFly;
+	bool crushed = false;
+	public AudioClip crushSound;
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +42,7 @@ public class Frog : MonoBehaviour {
 				}
 			}
 			//Attack and destroy nearest firefly
-			if (fireFlyDistance < 15f && closestFireFly != null){
+			if (fireFlyDistance < 15f && closestFireFly != null && crushed == false){
 				frogTongue.SetPosition(1, closestFireFly.transform.position);
 				tongueTimer = 0.2f;
 				Destroy (closestFireFly);
@@ -53,5 +55,22 @@ public class Frog : MonoBehaviour {
 			frogTongue.SetPosition(1, transform.position);
 		}
 
+	}
+
+	void Crushed(){
+		crushed = true;
+
+		float rngSoundTimer = Random.Range (1.2f, 1.8f);
+		Invoke ("PlaySquish", rngSoundTimer);
+
+		Transform croakingSFX = transform.Find ("Croaking");
+		croakingSFX.gameObject.SetActive (false);
+
+		Transform frogParticles = transform.Find ("FrogParticles");
+		Destroy (frogParticles.gameObject);
+	}
+
+	void PlaySquish(){
+		AudioSource.PlayClipAtPoint (crushSound, transform.position);
 	}
 }

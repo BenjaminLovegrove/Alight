@@ -355,12 +355,14 @@ MonoBehaviour:
   frogTongue: {fileID: 0}
   counter: 5
   tongueTimer: .300000012
+  setFrogStrikeTime: 0
   dist: 0
   lineDrawSpeed: 6
   fireflys: []
   fireFlyDistance: 999999
   thisFireFlyDistance: 0
   closestFireFly: {fileID: 0}
+  crushSound: {fileID: 8300000, guid: b6ed11d7c1d44374ba5f8a043fe732cb, type: 3}
 --- !u!120 &12088992
 LineRenderer:
   m_ObjectHideFlags: 1

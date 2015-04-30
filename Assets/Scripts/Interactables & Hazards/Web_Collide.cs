@@ -6,6 +6,7 @@ public class Web_Collide : MonoBehaviour {
 	public GameObject Fire1;
 	public GameObject Fire2;
 	public GameObject Log;
+	public GameObject[] frogsToCrush;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,12 @@ public class Web_Collide : MonoBehaviour {
 			Camera.main.BroadcastMessage("Death");
 			Destroy(collision.gameObject);
 			StartCoroutine(BurnMe(2.0F));
+
+			if (frogsToCrush.Length > 0){
+				foreach (GameObject frog in frogsToCrush){
+					frog.SendMessage ("Crushed", SendMessageOptions.DontRequireReceiver);
+				}
+			}
 		}
 	}
 	IEnumerator BurnMe(float waitTime) {
