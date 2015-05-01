@@ -969,6 +969,7 @@ MonoBehaviour:
   - {fileID: 190340}
   - {fileID: 190338}
   - {fileID: 190342}
+  clouds: []
   rainSound: {fileID: 8231892}
 --- !u!114 &11493172
 MonoBehaviour:
@@ -995,7 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 8300000, guid: 87a07a80f5f614f4f9615c583cb89ea7, type: 3}
-  respawnSFX: {fileID: 8300000, guid: e2022e871c0845441bae207212909086, type: 3}
+  respawnSFX: {fileID: 8300000, guid: 66a020bb71da6e64d81a907ebdf8a431, type: 3}
   wallDeathDialogue: {fileID: 8300000, guid: ebdaef640d1258347aba877ef429a922, type: 3}
 --- !u!124 &12493174
 Behaviour:

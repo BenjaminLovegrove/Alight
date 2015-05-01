@@ -38,9 +38,12 @@ public class CamMouseMovement : MonoBehaviour {
 		mainSwarmxy = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, this.transform.position.z);
 
 		//If in swamp area change min cam height to match lower ground plane
-		if (transform.position.x > 82){
+		if (transform.position.x > 82 && transform.position.x < 140){
 			minCamHeight = -25;
 		} else if (transform.position.x < 82 && transform.position.y < -20) {
+			camLerp += Time.deltaTime * speed;
+			minCamHeight = Mathf.Lerp (-25, -20, camLerp);
+		} else if (transform.position.x > 140 && transform.position.y < -20) {
 			camLerp += Time.deltaTime * speed;
 			minCamHeight = Mathf.Lerp (-25, -20, camLerp);
 		} else {
