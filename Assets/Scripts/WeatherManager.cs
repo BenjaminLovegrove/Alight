@@ -39,6 +39,7 @@ public class WeatherManager : MonoBehaviour {
 	}
 
 	public void ReduceRain() {
+		rainSound.volume = rainSound.volume * 0.7f;
 		GameObject r;
 		for (int i = 0; i < rain.Count; ++i) {
 			r = rain[i];
@@ -71,6 +72,7 @@ public class WeatherManager : MonoBehaviour {
 	}
 
 	public void IncreaseRain() {
+		rainSound.volume = rainSound.volume * 1.3f;
 		GameObject r;
 		for (int i = rain.Count-1; i >= 0; --i) {
 			r = rain[i];

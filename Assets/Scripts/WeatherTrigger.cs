@@ -7,6 +7,7 @@ public class WeatherTrigger : MonoBehaviour {
 	public 	bool			increaseRain	= false;
 	public 	float			thunderDelay	= 0.0f;
 	public 	float			lightningFreq	= 0.0f;
+	public	bool			finalTrigger = false;
 	
 	private WeatherManager	m_WeatherManager;
 
@@ -32,5 +33,10 @@ public class WeatherTrigger : MonoBehaviour {
 
 			gameObject.SetActive(false);
 		}
+
+		if (finalTrigger){
+			m_WeatherManager.StartCoroutine("FadeOutRainSound");
+		}
 	}
+
 }
