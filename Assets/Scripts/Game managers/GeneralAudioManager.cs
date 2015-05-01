@@ -13,10 +13,10 @@ public class GeneralAudioManager : MonoBehaviour {
 		AudioSource.PlayClipAtPoint (SFX, this.transform.position);
 	}
 
-	void Death(){ //Because I use OnDestroy for sending this message from the firefly I can't send an audio clip (as it would have been destroyed)
+	void Death(int wallTrigger){ //Because I use OnDestroy for sending this message from the firefly I can't send an audio clip (as it would have been destroyed)
 		AudioSource.PlayClipAtPoint (death, this.transform.position);
 
-		if (firstWallDeath){
+		if (wallTrigger == 1 && firstWallDeath && Camera.main.transform.position.x > -85){
 			Camera.main.BroadcastMessage ("PlayVoice", wallDeathDialogue);
 			firstWallDeath = false;
 		}
