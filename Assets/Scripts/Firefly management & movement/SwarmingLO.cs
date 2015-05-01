@@ -52,7 +52,7 @@ public class SwarmingLO : MonoBehaviour {
 				//	Ignore results is comparing with self
 				if (i != j) {
 					//	Get vector of distance between the two boids
-					Vector3 delta = m_Boids[j].transform.position - m_Boids[i].transform.position;
+					//Vector3 delta = m_Boids[j].transform.position - m_Boids[i].transform.position;
 
 					//	If it is within the range we care about
 					if (true/*delta.magnitude < nearRange*/) {
