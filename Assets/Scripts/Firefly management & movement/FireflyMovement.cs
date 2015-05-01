@@ -93,6 +93,10 @@ public class FireflyMovement : MonoBehaviour {
 	}
 
 	void EndingStars(){
+		//Get random range within 20 like with stars.
+		//lerp to spot.
+		//When reached turn into star.
+
 		starTimer = Random.Range (3f, 25f);
 		ending = true;
 	}
