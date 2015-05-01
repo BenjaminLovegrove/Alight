@@ -26,7 +26,6 @@ public class FireflyMovement : MonoBehaviour {
 
 
 	void Start () {
-		EndingStars ();
 		rb = GetComponent<Rigidbody>();
 		FireflyDragger = GameObject.FindGameObjectWithTag ("FireflyDragger");
 		scrSwarm = GetComponent<Swarming>();
