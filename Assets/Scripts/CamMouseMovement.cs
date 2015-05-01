@@ -72,7 +72,7 @@ public class CamMouseMovement : MonoBehaviour {
 		if (playerCursor.renderer.isVisible) {
 			if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 12) {
 				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
-			} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 5) {
+			} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 4) {
 				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
 			}
 		}
@@ -81,12 +81,7 @@ public class CamMouseMovement : MonoBehaviour {
 		if (Vector3.Distance (transform.position, mainSwarmxy) > 40) {
 			rb.AddForce ((mainSwarmxy - transform.position) * Time.deltaTime * 2f);
 		}
-
-		//This makes x a bit too sensative and y not enough.
-		/*if (Vector3.Distance (mousePos, screenCenterPoint) > 8){
-			rb.AddForce((mousePos - screenCenterPoint) * Time.deltaTime * 2);
-		}
-		*/
+		
 	}
 
 	void ReturnToSwarm(){ 
