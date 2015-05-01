@@ -19,9 +19,11 @@ public class WeatherManager : MonoBehaviour {
 	#endregion
 
 	public 	List<GameObject>	rain;
+	public	List<Cloud>			clouds;
 	public	AudioSource			rainSound;
 
 	private Lightning			m_Lightning;
+	private bool				m_CloudsHaveTriggered;
 
 
 	void Awake() {
@@ -30,7 +32,7 @@ public class WeatherManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		m_CloudsHaveTriggered = false;
 	}
 	
 	// Update is called once per frame
@@ -117,5 +119,15 @@ public class WeatherManager : MonoBehaviour {
 
 		if (m_Lightning.maxSecondsBetweenFlash < 0.0f)
 			m_Lightning.maxSecondsBetweenFlash = 0.0f;
+	}
+
+	public void TriggerCloudMovement() {
+		if (!m_CloudsHaveTriggered) {
+			m_CloudsHaveTriggered = true;
+
+			foreach (Cloud c in clouds) {
+				c.GetComponent<Rigidbody>().velocity = new Vector3(c.velocity, 0.0f, 0.0f);
+			}
+		}
 	}
 }
