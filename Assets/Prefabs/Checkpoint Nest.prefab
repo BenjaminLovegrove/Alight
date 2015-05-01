@@ -603,7 +603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lanternLight: {fileID: 10801302}
   particles: {fileID: 0}
-  lanternEnable: {fileID: 8300000, guid: e2022e871c0845441bae207212909086, type: 3}
+  lanternEnable: {fileID: 8300000, guid: 66a020bb71da6e64d81a907ebdf8a431, type: 3}
   spawnPoint: {fileID: 101316}
   startActive: 0
 --- !u!135 &13501302
