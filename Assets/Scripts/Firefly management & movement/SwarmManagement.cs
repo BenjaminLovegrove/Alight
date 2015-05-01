@@ -13,7 +13,9 @@ public class SwarmManagement : MonoBehaviour {
 	public GameObject secondarySwarmPoint;
 	float createSwarmCooldown; //This is because when moving a secondary swarm back to the main swarm it just instantly made another secondary swarm due to holding right click the next frame.
 	public GameObject fireFlyPrefab;
+	bool firstRespawn = true;
 
+	public AudioClip respawnDialogue;
 	public AudioClip respawnSFX;
 
 	GameObject secondarySwarm01;
@@ -66,7 +68,13 @@ public class SwarmManagement : MonoBehaviour {
 
 		if (swarmCount <= 0 && respawnTrigger == false) {
 			respawnTrigger = true;
-			Invoke ("Respawn", 2f);
+			if (firstRespawn){
+				Invoke ("Respawn", 3.5f);
+				firstRespawn = false;
+				Camera.main.BroadcastMessage ("PlayVoice", respawnDialogue);
+			} else {
+				Invoke ("Respawn", 2f);
+			}
 		}
 
 		//Reduce cooldowns
