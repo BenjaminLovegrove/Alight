@@ -126,7 +126,7 @@ public class WeatherManager : MonoBehaviour {
 			m_CloudsHaveTriggered = true;
 
 			foreach (Cloud c in clouds) {
-				c.GetComponent<Rigidbody>().velocity = new Vector3(c.velocity, 0.0f, 0.0f);
+				c.GetComponent<Rigidbody2D>().velocity = new Vector3(c.velocity, 0.0f, 0.0f);
 			}
 		}
 	}
