@@ -13,11 +13,20 @@ public class FireflyMovement : MonoBehaviour {
 	public 	bool 			initialFirefly = false; //Needs to be manually set to true on starting fireflies so they start without light.
 	private	TrailRenderer 	trail;
 
+	//Ending
+	public GameObject star1;
+	float starTimer;
+	public AudioClip starSound;
+	bool ending = false;
+	bool starMade = false;
+
 	//For light fade in
 	public 	Light 			areaLight;
 	private float 			startIntensity;
 
+
 	void Start () {
+		EndingStars ();
 		rb = GetComponent<Rigidbody>();
 		FireflyDragger = GameObject.FindGameObjectWithTag ("FireflyDragger");
 		scrSwarm = GetComponent<Swarming>();
@@ -56,6 +65,17 @@ public class FireflyMovement : MonoBehaviour {
 			trail.enabled = false;
 		}
 
+		//Ending
+		if (ending && starMade == false){
+			starTimer -= Time.deltaTime;
+			if (starTimer <= 0){
+				Instantiate (star1, transform.position, Quaternion.identity);
+				AudioSource.PlayClipAtPoint (starSound, Camera.main.transform.position);
+				starMade = true;
+				Destroy (this.gameObject);
+			}
+		}
+
 	}
 
 	void FixedUpdate(){
@@ -71,5 +91,10 @@ public class FireflyMovement : MonoBehaviour {
 
 	void LightOn(){
 		lightOn = true;
+	}
+
+	void EndingStars(){
+		starTimer = Random.Range (3f, 25f);
+		ending = true;
 	}
 }

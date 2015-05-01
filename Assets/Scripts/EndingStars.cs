@@ -10,30 +10,34 @@ public class EndingStars : MonoBehaviour {
 	float randomy;
 	float rngTimer;
 
+	bool triggered = false;
+
 
 
 	void Start () {
-		rngTimer = Random.Range (2f, 7f);
+		rngTimer = Random.Range (2f, 6f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		rngTimer -= Time.deltaTime;
 
-		if (rngTimer <= 0){
+		if (rngTimer <= 0 && triggered == false){
 
-			randomx = Random.Range(transform.position.x - 20, transform.position.x + 20);
-			randomy = Random.Range(transform.position.y - 20, transform.position.y + 20);
+			randomx = Random.Range(transform.position.x - 8, transform.position.x + 8);
+			randomy = Random.Range(transform.position.y - 8, transform.position.y + 8);
 
 			if (this.gameObject.tag == "Star1"){
 				nextStarPos = new Vector3 (randomx, randomy, 5);
 				AudioSource.PlayClipAtPoint (starSound, Camera.main.transform.position, 0.6f);
 			} else if (this.gameObject.tag == "Star2"){
-				nextStarPos = new Vector3 (randomx * 0.7f, randomy * 0.7f, 8);
+				nextStarPos = new Vector3 (randomx * 0.5f, randomy * 0.5f, 8);
 				AudioSource.PlayClipAtPoint (starSound, Camera.main.transform.position, 0.3f);
 			}
 
 			Instantiate (nextStar, nextStarPos, Quaternion.identity);
+
+			triggered = true;
 		}
 	}
 }
