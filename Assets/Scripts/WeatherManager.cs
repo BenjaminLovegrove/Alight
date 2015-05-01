@@ -21,9 +21,10 @@ public class WeatherManager : MonoBehaviour {
 	public 	List<GameObject>	rain;
 	public	List<Cloud>			clouds;
 	public	AudioSource			rainSound;
+	public 	bool				cloudsHaveTriggered;
 
 	private Lightning			m_Lightning;
-	private bool				m_CloudsHaveTriggered;
+
 
 
 	void Awake() {
@@ -32,7 +33,7 @@ public class WeatherManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		m_CloudsHaveTriggered = false;
+		cloudsHaveTriggered = false;
 	}
 	
 	// Update is called once per frame
@@ -71,6 +72,7 @@ public class WeatherManager : MonoBehaviour {
 		}
 
 		rainSound.Stop();
+		m_Lightning.enabled = false;
 	}
 
 	public void IncreaseRain() {
@@ -121,13 +123,4 @@ public class WeatherManager : MonoBehaviour {
 			m_Lightning.maxSecondsBetweenFlash = 0.0f;
 	}
 
-	public void TriggerCloudMovement() {
-		if (!m_CloudsHaveTriggered) {
-			m_CloudsHaveTriggered = true;
-
-			foreach (Cloud c in clouds) {
-				c.GetComponent<Rigidbody2D>().velocity = new Vector3(c.velocity, 0.0f, 0.0f);
-			}
-		}
-	}
 }
