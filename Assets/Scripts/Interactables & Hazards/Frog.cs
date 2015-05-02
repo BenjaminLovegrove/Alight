@@ -60,7 +60,7 @@ public class Frog : MonoBehaviour {
 	void Crushed(){
 		crushed = true;
 
-		float rngSoundTimer = Random.Range (3f, 3.5f);
+		float rngSoundTimer = Random.Range (3.5f, 4f);
 		Invoke ("PlaySquish", rngSoundTimer);
 
 		Transform croakingSFX = transform.Find ("Croaking");

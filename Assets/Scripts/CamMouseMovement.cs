@@ -17,11 +17,21 @@ public class CamMouseMovement : MonoBehaviour {
 	public float speed = 0.7f;
 	bool camReturning = false;
 
+	public AudioClip endingMusic;
+	
+	bool fadeOut = false;
+	bool fadeIn = false;
+	float startVol;
+	float lerpTimer;
+	bool endZoom = false;
+	float endZoomLerpTimer = 0f;
+	float lerpSpeed = 10f;
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
 		rb.isKinematic = true;
 		mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
+		startVol = audio.volume;
 	}
 
 	// Update is called once per frame
@@ -52,13 +62,37 @@ public class CamMouseMovement : MonoBehaviour {
 
 		//Return camera to main swarm (after second swarm death)
 		if (camReturning){
-			camReturnLerp += Time.deltaTime * 0.7f;
+			camReturnLerp += Time.deltaTime * 1f;
 			transform.position = Vector3.Lerp (startReturnPos, ReturnPos, camReturnLerp);
 
 			if (camReturnLerp > 1f){
 				rb.isKinematic = false;
 				camReturning = false;
 			}
+		}
+
+		if (fadeOut){
+			lerpTimer += (Time.deltaTime / 5.0f);
+			audio.volume = Mathf.Lerp(startVol, 0f, lerpTimer);
+			
+			if (audio.volume < 0.1f){
+				audio.Stop();
+				audio.clip = endingMusic;
+				audio.Play ();
+				fadeIn = true;
+				fadeOut = false;
+				lerpTimer = 0f;
+			}
+		}
+		
+		if (fadeIn){
+			lerpTimer += Time.deltaTime / 2f;
+			audio.volume = Mathf.Lerp(0f, startVol, lerpTimer);
+		}
+
+		if (endZoom){
+			endZoomLerpTimer += (Time.deltaTime / lerpSpeed);
+			Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 25f, endZoomLerpTimer);
 		}
 
 		//Esc key
@@ -103,6 +137,13 @@ public class CamMouseMovement : MonoBehaviour {
 
 	void Unlock(){
 		rb.isKinematic = false;
+	}
+
+	
+	void EndMusic(){
+		fadeOut = true;
+		lerpTimer = 0;
+		endZoom = true;
 	}
 
 }

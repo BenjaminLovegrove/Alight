@@ -35,6 +35,7 @@ public class WeatherTrigger : MonoBehaviour {
 		}
 
 		if (finalTrigger){
+			Camera.main.SendMessage ("EndMusic");
 			GameObject GO = GameObject.FindGameObjectWithTag("Lightning");
 			if (GO != null){
 				GO.SetActive(false);

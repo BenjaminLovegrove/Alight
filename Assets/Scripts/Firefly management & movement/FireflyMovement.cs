@@ -105,4 +105,5 @@ public class FireflyMovement : MonoBehaviour {
 	void Lock(){
 		rb.isKinematic = true;
 	}
+
 }
