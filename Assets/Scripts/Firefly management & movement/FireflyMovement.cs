@@ -92,12 +92,17 @@ public class FireflyMovement : MonoBehaviour {
 		lightOn = true;
 	}
 
-	void EndingStars(){
+	void EndingStars(float delay){
 		//Get random range within 20 like with stars.
 		//lerp to spot.
 		//When reached turn into star.
-
-		starTimer = Random.Range (3f, 25f);
+		
+		Invoke ("Lock", 2f);
+		starTimer = delay + 2f;
 		ending = true;
+	}
+
+	void Lock(){
+		rb.isKinematic = true;
 	}
 }

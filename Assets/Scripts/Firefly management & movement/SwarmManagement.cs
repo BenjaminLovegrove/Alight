@@ -14,6 +14,7 @@ public class SwarmManagement : MonoBehaviour {
 	float createSwarmCooldown; //This is because when moving a secondary swarm back to the main swarm it just instantly made another secondary swarm due to holding right click the next frame.
 	public GameObject fireFlyPrefab;
 	bool firstRespawn = true;
+	bool noRespawn = false;
 
 	public AudioClip respawnDialogue;
 	public AudioClip respawnSFX;
@@ -100,13 +101,15 @@ public class SwarmManagement : MonoBehaviour {
 		//Respawn fireflies at checkpoint.
 		//Move cam to checkpoint.
 		//Move main swarm point to respawn point.
-		Camera.main.BroadcastMessage ("Respawn", respawnSFX);
-		Camera.main.transform.position = new Vector3 (checkpointLoc.x, checkpointLoc.y, -30);
-		transform.position = checkpointLoc;
-		for(int i = 0; i < 15; i++){
-			Instantiate(fireFlyPrefab, checkpointLoc, fireFlyPrefab.transform.rotation);
+		if (!noRespawn){
+			Camera.main.BroadcastMessage ("Respawn", respawnSFX);
+			Camera.main.transform.position = new Vector3 (checkpointLoc.x, checkpointLoc.y, -30);
+			transform.position = checkpointLoc;
+			for(int i = 0; i < 15; i++){
+				Instantiate(fireFlyPrefab, checkpointLoc, fireFlyPrefab.transform.rotation);
+			}
+			respawnTrigger = false;
 		}
-		respawnTrigger = false;
 	}
 
 	void OnTriggerStay(Collider col){
@@ -122,6 +125,10 @@ public class SwarmManagement : MonoBehaviour {
 
 			createSwarmCooldown = 2f;
 		}
+	}
+
+	void NoRespawn(){
+		noRespawn = true;
 	}
 
 }
