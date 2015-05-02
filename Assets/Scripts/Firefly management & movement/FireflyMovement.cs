@@ -97,7 +97,7 @@ public class FireflyMovement : MonoBehaviour {
 		//lerp to spot.
 		//When reached turn into star.
 		
-		Invoke ("Lock", (delay + 2f));
+		Invoke ("Lock", (delay + 3f));
 		starTimer = delay + 2f;
 		ending = true;
 	}

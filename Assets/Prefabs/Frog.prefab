@@ -355,7 +355,7 @@ MonoBehaviour:
   frogTongue: {fileID: 0}
   counter: 5
   tongueTimer: .300000012
-  setFrogStrikeTime: 0
+  setFrogStrikeTime: 1
   dist: 0
   lineDrawSpeed: 6
   fireflys: []

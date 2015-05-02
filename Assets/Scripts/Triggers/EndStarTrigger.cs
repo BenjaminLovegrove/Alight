@@ -13,6 +13,7 @@ public class EndStarTrigger : MonoBehaviour {
 		if (firstFireFly){
 			mainSwarm.SendMessage("NoRespawn");
 			Camera.main.BroadcastMessage("PlayVoice", finalDialogue);
+			firstFireFly = false;
 		}
 
 		if (col.gameObject.tag =="FireFly"){

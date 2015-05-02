@@ -16,6 +16,7 @@ public class CamMouseMovement : MonoBehaviour {
 	Vector3 ReturnPos;
 	public float speed = 0.7f;
 	bool camReturning = false;
+	public GameObject fadeToBlack;
 
 	public AudioClip endingMusic;
 	
@@ -25,7 +26,7 @@ public class CamMouseMovement : MonoBehaviour {
 	float lerpTimer;
 	bool endZoom = false;
 	float endZoomLerpTimer = 0f;
-	float lerpSpeed = 10f;
+	float lerpSpeed = 1000f;
 
 	void Start(){
 		rb = GetComponent<Rigidbody> ();
@@ -79,6 +80,7 @@ public class CamMouseMovement : MonoBehaviour {
 				audio.Stop();
 				audio.clip = endingMusic;
 				audio.Play ();
+				audio.loop = false;
 				fadeIn = true;
 				fadeOut = false;
 				lerpTimer = 0f;
@@ -86,7 +88,7 @@ public class CamMouseMovement : MonoBehaviour {
 		}
 		
 		if (fadeIn){
-			lerpTimer += Time.deltaTime / 2f;
+			lerpTimer += Time.deltaTime / 5f;
 			audio.volume = Mathf.Lerp(0f, startVol, lerpTimer);
 		}
 
