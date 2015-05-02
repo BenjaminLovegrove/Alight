@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour {
 	Vector3 OriginalcreditsPos;
 	public AudioSource[] dialogueSource;
 
+	private float pauseTimer = 0.0f;
 	float musicLerpTimer = 0;
 	bool starting = false;
 
@@ -40,8 +41,15 @@ public class MainMenu : MonoBehaviour {
 		if (creditsOpen){
 
 			scrollDelay -= Time.deltaTime;
-			if (scrollDelay <= 0 && credits.gameObject.transform.position.y <= 280){
+			if (scrollDelay <= 0 && credits.gameObject.transform.position.y <= 520.0f){
 				credits.gameObject.transform.Translate (Vector3.up * Time.deltaTime * 30);
+			} else {
+				pauseTimer += Time.deltaTime;
+				if (pauseTimer >= 5.0f) {
+					credits.enabled = false;
+					creditsOpen = false;
+					pauseTimer = 0.0f;
+				}
 			}
 
 			if (Input.GetMouseButtonDown(0)){
