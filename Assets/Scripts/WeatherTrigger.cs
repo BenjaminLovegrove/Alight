@@ -35,7 +35,10 @@ public class WeatherTrigger : MonoBehaviour {
 		}
 
 		if (finalTrigger){
-			GameObject.FindGameObjectWithTag("Lightning").SetActive(false);
+			GameObject GO = GameObject.FindGameObjectWithTag("Lightning");
+			if (GO != null){
+				GO.SetActive(false);
+			}
 		}
 	}
 

@@ -13,8 +13,14 @@ public class Cloud : MonoBehaviour {
 	public	float		cloudDistance;
 
 	// Use this for initialization
-	void Start () {
-		m_Speed = Random.Range(0.01f, 0.02f);
+	void Awake() {
+		m_Speed = Random.Range(0.001f, 0.013f);
+
+		if (Random.Range(0,2) == 1) {
+			Vector3 theScale = transform.localScale;
+			theScale.x *= -1;
+			transform.localScale = theScale;
+		}
 	}
 	
 	// Update is called once per frame

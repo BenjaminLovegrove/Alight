@@ -37,9 +37,12 @@ public class SwarmManagement : MonoBehaviour {
 		//Tell 3 fireflies to move to seconds swarm
 		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount > 4 && createSwarmCooldown <= 0) {
 			secondarySwarmPoint.transform.position = this.transform.position;
-			fireFlies[0].SendMessage("SwarmSplit");
-			fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point instead of first
-			fireFlies[2].SendMessage("SwarmSplit");
+			if (fireFlies[0] != null)
+				fireFlies[0].SendMessage("SwarmSplit");
+			if (fireFlies[1] != null)
+				fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point instead of first
+			if (fireFlies[2] != null)
+				fireFlies[2].SendMessage("SwarmSplit");
 			secondarySwarm01 = fireFlies[0];
 			secondarySwarm02 = fireFlies[1];
 			secondarySwarm03 = fireFlies[2];
@@ -52,7 +55,8 @@ public class SwarmManagement : MonoBehaviour {
 		//Tell 1 fireflies to move to seconds swarm, if there are only 2-4 fireflies left
 		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount <= 4 && swarmCount > 1 && createSwarmCooldown <= 0) {
 			secondarySwarmPoint.transform.position = this.transform.position;
-			fireFlies[0].SendMessage("SwarmSplit");
+			if (fireFlies[0] != null)
+				fireFlies[0].SendMessage("SwarmSplit");
 			secondarySwarm01 = fireFlies[0];
 			
 			secondarySwarmActive = true;
@@ -107,11 +111,12 @@ public class SwarmManagement : MonoBehaviour {
 
 	void OnTriggerStay(Collider col){
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0 && secondarySwarmActive) {
-			fireFlies[0].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
-			fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
-			if (fireFlies[2] != null){
+			if (fireFlies[0] != null)
+				fireFlies[0].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			if (fireFlies[1] != null)
+				fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			if (fireFlies[2] != null)
 				fireFlies[2].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
-			}
 
 			secondarySwarmActive = false;
 
