@@ -55,8 +55,10 @@ public class WeatherManager : MonoBehaviour {
 						flag = true;
 				}
 
-				if (!flag)
+				if (!flag) {
 					StartCoroutine(FadeOutRainSound());
+					m_Lightning.gameObject.SetActive(false);
+				}
 				break;
 			} 
 		}
@@ -72,7 +74,6 @@ public class WeatherManager : MonoBehaviour {
 		}
 
 		rainSound.Stop();
-		m_Lightning.gameObject.SetActive(false);
 	}
 
 	public void IncreaseRain() {
