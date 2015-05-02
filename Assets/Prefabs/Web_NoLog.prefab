@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400938}
   - 54: {fileID: 5400938}
   - 65: {fileID: 6500938}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Web_NoLog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 198: {fileID: 19877906}
   - 199: {fileID: 19977906}
   - 114: {fileID: 11477914}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CFX2_DoubleFireWall A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 4: {fileID: 477908}
   - 198: {fileID: 19877908}
   - 199: {fileID: 19977908}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 477912}
   - 198: {fileID: 19877910}
   - 199: {fileID: 19977910}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - 198: {fileID: 19877912}
   - 199: {fileID: 19977912}
   - 114: {fileID: 11477916}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CFX2_DoubleFireWall A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - 4: {fileID: 477914}
   - 198: {fileID: 19877914}
   - 199: {fileID: 19977914}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - 4: {fileID: 477916}
   - 198: {fileID: 19877916}
   - 199: {fileID: 19977916}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77f58dae71654f4d96764fd38e1ef21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fire1: {fileID: 0}
-  Fire2: {fileID: 0}
+  Fire1: {fileID: 177912}
+  Fire2: {fileID: 177906}
   Log: {fileID: 0}
   frogsToCrush: []
 --- !u!114 &11477914
@@ -6715,7 +6715,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6cd68c9810739524bbab1efb589df875, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

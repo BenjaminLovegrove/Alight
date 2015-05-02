@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21293842}
   - 54: {fileID: 5493842}
   - 136: {fileID: 13632200}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Log_Web_Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11493844}
   - 54: {fileID: 5493844}
   - 65: {fileID: 6593844}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: spiderweb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 4: {fileID: 497020}
   - 198: {fileID: 19897020}
   - 199: {fileID: 19997020}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 497022}
   - 198: {fileID: 19897022}
   - 199: {fileID: 19997022}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - 198: {fileID: 19897024}
   - 199: {fileID: 19997024}
   - 114: {fileID: 11497020}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CFX2_DoubleFireWall A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - 4: {fileID: 497024}
   - 198: {fileID: 19897026}
   - 199: {fileID: 19997026}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - 4: {fileID: 497028}
   - 198: {fileID: 19897028}
   - 199: {fileID: 19997028}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - 198: {fileID: 19897030}
   - 199: {fileID: 19997030}
   - 114: {fileID: 11497022}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CFX2_DoubleFireWall A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6774,7 +6774,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: bef998076ea83064ebfaeb46fa00f183, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -6796,7 +6796,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6cd68c9810739524bbab1efb589df875, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
