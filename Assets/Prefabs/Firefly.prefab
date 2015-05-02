@@ -449,7 +449,7 @@ MonoBehaviour:
   ffDeath: {fileID: 8300000, guid: 87a07a80f5f614f4f9615c583cb89ea7, type: 3}
   initialFirefly: 0
   star1: {fileID: 169360, guid: 5adca900ed03d404aa0ea3d118e758e5, type: 2}
-  starSound: {fileID: 8300000, guid: 2d6ebf7d32b75db4f8d1ca721292a817, type: 3}
+  starSound: {fileID: 8300000, guid: 8ea91ae5e90e9a9409b1854fa2d13f42, type: 3}
   areaLight: {fileID: 0}
 --- !u!114 &11433806
 MonoBehaviour:

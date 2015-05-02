@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff3e901a4c458843ac4b4a18ced5bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starSound: {fileID: 8300000, guid: 2d6ebf7d32b75db4f8d1ca721292a817, type: 3}
+  starSound: {fileID: 8300000, guid: 8ea91ae5e90e9a9409b1854fa2d13f42, type: 3}
   nextStar: {fileID: 180184, guid: f854b6f50abf5114cb496a6680623058, type: 2}
 --- !u!212 &21276022
 SpriteRenderer:

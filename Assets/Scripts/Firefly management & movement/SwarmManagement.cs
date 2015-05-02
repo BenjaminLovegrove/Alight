@@ -74,7 +74,7 @@ public class SwarmManagement : MonoBehaviour {
 		if (swarmCount <= 0 && respawnTrigger == false) {
 			respawnTrigger = true;
 			if (firstRespawn){
-				Invoke ("Respawn", 6f);
+				Invoke ("Respawn", 7f);
 				firstRespawn = false;
 				Camera.main.BroadcastMessage ("PlayVoice", respawnDialogue);
 			} else {
