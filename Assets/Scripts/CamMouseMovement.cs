@@ -70,9 +70,9 @@ public class CamMouseMovement : MonoBehaviour {
 	void FixedUpdate(){
 		//Move the camera
 		if (playerCursor.renderer.isVisible) {
-			if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 12) {
+			if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 4) {
 				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
-			} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 4) {
+			} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 2.5f) {
 				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
 			}
 		}
