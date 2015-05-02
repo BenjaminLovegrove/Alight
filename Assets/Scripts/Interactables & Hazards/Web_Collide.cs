@@ -33,8 +33,12 @@ public class Web_Collide : MonoBehaviour {
 		}
 	}
 	IEnumerator BurnMe(float waitTime) {
-		Fire1.SetActive(true);
-		Fire2.SetActive(true);
+		if (Fire1 != null){
+			Fire1.SetActive(true);
+		}
+		if (Fire2 != null){
+			Fire2.SetActive(true);
+		}
 	
 		yield return new WaitForSeconds(waitTime);
 		Destroy(this.gameObject);
