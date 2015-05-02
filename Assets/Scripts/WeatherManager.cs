@@ -72,7 +72,7 @@ public class WeatherManager : MonoBehaviour {
 		}
 
 		rainSound.Stop();
-		m_Lightning.enabled = false;
+		m_Lightning.gameObject.SetActive(false);
 	}
 
 	public void IncreaseRain() {
@@ -107,6 +107,9 @@ public class WeatherManager : MonoBehaviour {
 
 		m_Lightning.minSecondsBetweenFlash += numSeconds;
 		m_Lightning.maxSecondsBetweenFlash += numSeconds;
+
+		if (m_Lightning.minSecondsBetweenFlash < 1.0f)
+			m_Lightning.minSecondsBetweenFlash = 1.0f;
 	}
 
 	public void IncreaseLightningFrequency(float numSeconds) {
