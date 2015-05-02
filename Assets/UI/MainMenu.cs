@@ -6,6 +6,10 @@ public class MainMenu : MonoBehaviour {
 
 	GameObject fadeOutObj;
 	Image fadeOutImg;
+	Image credits;
+	float scrollDelay = 1f;
+	bool creditsOpen = false;
+	Vector3 OriginalcreditsPos;
 	public AudioSource[] dialogueSource;
 
 	float musicLerpTimer = 0;
@@ -14,8 +18,11 @@ public class MainMenu : MonoBehaviour {
 	void Start(){
 		fadeOutObj = GameObject.Find ("Image");
 		fadeOutImg = fadeOutObj.GetComponent<Image>();
+		credits = GameObject.Find ("Credits").GetComponent<Image> ();
 		fadeOutObj.SetActive(false);
+		credits.enabled = false;
 		dialogueSource = GetComponentsInChildren<AudioSource> ();
+		OriginalcreditsPos = credits.gameObject.transform.position;
 	}
 
 	void Update(){
@@ -30,6 +37,25 @@ public class MainMenu : MonoBehaviour {
 			dialogueSource[0].volume = Mathf.Lerp(musicStartVol, 0f, musicLerpTimer);
 		}
 
+		if (creditsOpen){
+
+			scrollDelay -= Time.deltaTime;
+			if (scrollDelay <= 0 && credits.gameObject.transform.position.y <= 280){
+				credits.gameObject.transform.Translate (Vector3.up * Time.deltaTime * 30);
+			}
+
+			if (Input.GetMouseButtonDown(0)){
+				credits.enabled = false;
+				creditsOpen = false;
+			}
+
+			if (Input.anyKeyDown && credits.enabled == true){
+				credits.enabled = false;
+				creditsOpen = false;
+			}
+
+		}
+
 	}
 
 	void Begin () {
@@ -42,5 +68,12 @@ public class MainMenu : MonoBehaviour {
 
 	void Load(){
 		Application.LoadLevel ("Scene_MVPMain");
+	}
+
+	void Credits(){
+		scrollDelay = 1f;
+		credits.gameObject.transform.position = OriginalcreditsPos;
+		credits.enabled = true;
+		creditsOpen = true;
 	}
 }
