@@ -16,7 +16,12 @@ public class CamMouseMovement : MonoBehaviour {
 	Vector3 ReturnPos;
 	public float speed = 0.7f;
 	bool camReturning = false;
+
 	public GameObject fadeToBlack;
+	Material ftbMat;
+	bool ftb = false;
+	float ftbLerp = 0f;
+	float ftbAlpha = 0f;
 
 	public AudioClip endingMusic;
 	
@@ -33,6 +38,7 @@ public class CamMouseMovement : MonoBehaviour {
 		rb.isKinematic = true;
 		mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
 		startVol = audio.volume;
+		ftbMat = fadeToBlack.GetComponent<MeshRenderer>().materials[0];
 	}
 
 	// Update is called once per frame
@@ -97,6 +103,12 @@ public class CamMouseMovement : MonoBehaviour {
 			Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 25f, endZoomLerpTimer);
 		}
 
+		if (ftb){
+			ftbLerp += (Time.deltaTime / 1000.0f);
+			ftbAlpha = Mathf.Lerp(0f, 255f, ftbLerp);
+			ftbMat.color = new Color(ftbMat.color.r, ftbMat.color.g, ftbMat.color.b,  ftbAlpha);
+		}
+
 		//Esc key
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.LoadLevel("Menu_Main");
@@ -147,5 +159,15 @@ public class CamMouseMovement : MonoBehaviour {
 		lerpTimer = 0;
 		endZoom = true;
 	}
+
+	
+	void FadeToBlackInitiate(){
+		Invoke ("FadeToBlack", 30f);
+	}
+
+	void FadeToBlack(){
+		ftb = true;
+	}
+		                  
 
 }

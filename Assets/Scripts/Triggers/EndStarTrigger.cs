@@ -14,6 +14,7 @@ public class EndStarTrigger : MonoBehaviour {
 			mainSwarm.SendMessage("NoRespawn");
 			Camera.main.BroadcastMessage("PlayVoice", finalDialogue);
 			firstFireFly = false;
+			Camera.main.SendMessage("FadeToBlackInitiate");
 		}
 
 		if (col.gameObject.tag =="FireFly"){
