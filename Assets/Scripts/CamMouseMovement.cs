@@ -107,6 +107,11 @@ public class CamMouseMovement : MonoBehaviour {
 			ftbLerp += (Time.deltaTime / 1500.0f);
 			ftbAlpha = Mathf.Lerp(0f, 255f, ftbLerp);
 			ftbMat.color = new Color(ftbMat.color.r, ftbMat.color.g, ftbMat.color.b,  ftbAlpha);
+			if (Input.anyKeyDown){
+				Application.LoadLevel ("Menu_Main");
+			} else if (Input.GetMouseButtonDown(0)){
+				Application.LoadLevel ("Menu_Main");
+			}
 		}
 
 		//Esc key
@@ -162,12 +167,11 @@ public class CamMouseMovement : MonoBehaviour {
 
 	
 	void FadeToBlackInitiate(){
-		Invoke ("FadeToBlack", 30f);
+		Invoke ("FadeToBlack", 45f);
 	}
 
 	void FadeToBlack(){
 		ftb = true;
 	}
-		                  
 
 }

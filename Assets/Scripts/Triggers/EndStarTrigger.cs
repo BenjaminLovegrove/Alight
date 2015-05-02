@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EndStarTrigger : MonoBehaviour {
 
-	public float delay = 2f;
+	public float delay = 4f;
 	public GameObject mainSwarm;
 	bool firstFireFly = true;
 	public AudioClip finalDialogue; 

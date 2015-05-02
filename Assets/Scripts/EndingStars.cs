@@ -15,7 +15,7 @@ public class EndingStars : MonoBehaviour {
 
 
 	void Start () {
-		rngTimer = Random.Range (2f, 6f);
+		rngTimer = Random.Range (1.5f, 4f);
 	}
 	
 	// Update is called once per frame
@@ -31,7 +31,7 @@ public class EndingStars : MonoBehaviour {
 				nextStarPos = new Vector3 (randomx, randomy, 5);
 				AudioSource.PlayClipAtPoint (starSound, Camera.main.transform.position, 0.6f);
 			} else if (this.gameObject.tag == "Star2"){
-				nextStarPos = new Vector3 (randomx * 0.5f, randomy * 0.5f, 8);
+				nextStarPos = new Vector3 (randomx, randomy, 8);
 				AudioSource.PlayClipAtPoint (starSound, Camera.main.transform.position, 0.3f);
 			}
 
