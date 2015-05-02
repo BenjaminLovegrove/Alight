@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11400938}
   - 54: {fileID: 5400938}
   - 65: {fileID: 6500938}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Web_NoLog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 198: {fileID: 19877906}
   - 199: {fileID: 19977906}
   - 114: {fileID: 11477914}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: CFX2_DoubleFireWall A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 4: {fileID: 477908}
   - 198: {fileID: 19877908}
   - 199: {fileID: 19977908}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 477912}
   - 198: {fileID: 19877910}
   - 199: {fileID: 19977910}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - 198: {fileID: 19877912}
   - 199: {fileID: 19977912}
   - 114: {fileID: 11477916}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: CFX2_DoubleFireWall A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - 4: {fileID: 477914}
   - 198: {fileID: 19877914}
   - 199: {fileID: 19977914}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - 4: {fileID: 477916}
   - 198: {fileID: 19877916}
   - 199: {fileID: 19977916}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,8 +130,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100938}
   m_LocalRotation: {x: 0, y: 0, z: -.707106829, w: .707106829}
-  m_LocalPosition: {x: -459.637451, y: -16.0138931, z: 0}
-  m_LocalScale: {x: 2.61582303, y: 1.63488948, z: 1.63488948}
+  m_LocalPosition: {x: -266.274506, y: -28.5334091, z: -1}
+  m_LocalScale: {x: 1.53999865, y: -1.36500001, z: 1.42235386}
   m_Children:
   - {fileID: 477910}
   - {fileID: 477906}
@@ -143,8 +143,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177906}
-  m_LocalRotation: {x: -.70706141, y: .00802360009, z: -.00802372675, w: .707061172}
-  m_LocalPosition: {x: -.540000021, y: 3.8599999, z: -.629999995}
+  m_LocalRotation: {x: .330339342, y: -.77468878, z: .184872806, w: .50651294}
+  m_LocalPosition: {x: -2.33000088, y: .999993324, z: -.629999995}
   m_LocalScale: {x: 2.09969711, y: 2.31220937, z: 1.22767186}
   m_Children:
   - {fileID: 477916}
@@ -6715,14 +6715,14 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 6cd68c9810739524bbab1efb589df875, type: 2}
+  - {fileID: 2100000, guid: e6ac16649a2f3aa408860692c2abd0a0, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c2fe4780783c40741a061c799a318d23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

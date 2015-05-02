@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lanternLight: []
   particles: {fileID: 0}
-  lanternEnable: {fileID: 8300000, guid: c648dffcdaaa04942bd9219f57d5bd69, type: 3}
+  lanternEnable: {fileID: 8300000, guid: 524d31ce36d5d6b4b85cee17edec8743, type: 3}
   startActive: 0
 --- !u!135 &13500000
 SphereCollider:
