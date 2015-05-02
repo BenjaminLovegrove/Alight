@@ -71,8 +71,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -83.6545105, y: -26.863409, z: 9.27000046}
-  m_LocalScale: {x: -.824348986, y: .775857806, z: .775857806}
+  m_LocalPosition: {x: -143.009995, y: 13.974, z: 9.27000046}
+  m_LocalScale: {x: -1.11148429, y: .905347049, z: .905347049}
   m_Children:
   - {fileID: 460608}
   - {fileID: 460612}
@@ -99,7 +99,7 @@ Light:
   m_Enabled: 0
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: 0, g: .917241573, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 40
   m_SpotAngle: 30
@@ -134,7 +134,7 @@ Light:
   m_Enabled: 0
   serializedVersion: 3
   m_Type: 2
-  m_Color: {r: .117241383, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: .818941534, b: 0, a: 1}
   m_Intensity: 1.25999999
   m_Range: 15
   m_SpotAngle: 30
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lanternLight: []
   particles: {fileID: 0}
-  lanternEnable: {fileID: 0}
+  lanternEnable: {fileID: 8300000, guid: 524d31ce36d5d6b4b85cee17edec8743, type: 3}
   startActive: 0
 --- !u!135 &13560612
 SphereCollider:
@@ -182,10 +182,10 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160610}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15.0100002
+  m_Radius: 17
   m_Center: {x: 7.62939453e-06, y: 0, z: 0}
 --- !u!198 &19860612
 ParticleSystem:
@@ -341,7 +341,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 3573481481
+        rgba: 3568232703
       minMaxState: 0
     startSize:
       scalar: .400000006
@@ -541,21 +541,21 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 16777215
+          rgba: 4293190884
         key1:
           serializedVersion: 2
-          rgba: 4294295919
+          rgba: 3461851108
         key2:
           serializedVersion: 2
-          rgba: 11888396
+          rgba: 1953499
         key3:
           serializedVersion: 2
-          rgba: 16777215
+          rgba: 3750308
         key4:
           serializedVersion: 2
           rgba: 16777215
@@ -568,24 +568,24 @@ ParticleSystem:
         key7:
           serializedVersion: 2
           rgba: 0
-        ctime0: 0
-        ctime1: 3855
-        ctime2: 7710
-        ctime3: 65535
+        ctime0: 964
+        ctime1: 5012
+        ctime2: 30840
+        ctime3: 44718
         ctime4: 65535
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 1927
+        atime1: 44525
         atime2: 65535
         atime3: 65535
         atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
-        m_NumColorKeys: 4
-        m_NumAlphaKeys: 3
+        m_NumColorKeys: 5
+        m_NumAlphaKeys: 2
       minGradient:
         key0:
           serializedVersion: 2
@@ -1263,7 +1263,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c6dd2d637bdb5fb48b39acaa64216935, type: 2}
+  - {fileID: 2100000, guid: c45dd56e424313b469f23c1db7dbe886, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1272,7 +1272,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e5e865277533cd44695a8f1cc22426ce, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: .848762929, b: .164705873, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
