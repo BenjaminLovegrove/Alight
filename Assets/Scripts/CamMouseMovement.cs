@@ -104,7 +104,7 @@ public class CamMouseMovement : MonoBehaviour {
 		}
 
 		if (ftb){
-			ftbLerp += (Time.deltaTime / 1000.0f);
+			ftbLerp += (Time.deltaTime / 1500.0f);
 			ftbAlpha = Mathf.Lerp(0f, 255f, ftbLerp);
 			ftbMat.color = new Color(ftbMat.color.r, ftbMat.color.g, ftbMat.color.b,  ftbAlpha);
 		}
