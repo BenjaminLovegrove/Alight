@@ -30,7 +30,6 @@ public class Cloud : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.GetComponent<AudioListener>() != null) {
-			Debug.Log ("Triggered");
 			_TriggerCloudMovement();
 		}
 	}
