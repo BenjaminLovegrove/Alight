@@ -8,13 +8,13 @@ public class Cloud : MonoBehaviour {
 		RIGHT
 	}
 
-	public 	float		speed;
+	private float		m_Speed;
 	public 	Direction	direction = Direction.LEFT;
 	public	float		cloudDistance;
 
 	// Use this for initialization
 	void Start () {
-	
+		m_Speed = Random.Range(0.01f, 0.02f);
 	}
 	
 	// Update is called once per frame
@@ -49,7 +49,7 @@ public class Cloud : MonoBehaviour {
 			//	Prevent divide by zero errors
 
 
-			timer += Time.deltaTime * speed;
+			timer += Time.deltaTime * m_Speed;
 			
 			c.transform.position = new Vector3(Mathf.Lerp(x, newX, timer),
 			                                   c.transform.position.y,
