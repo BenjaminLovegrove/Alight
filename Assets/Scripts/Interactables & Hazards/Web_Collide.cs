@@ -8,6 +8,7 @@ public class Web_Collide : MonoBehaviour {
 	public GameObject Log;
 	public GameObject[] frogsToCrush;
 	public AudioClip treeFalling;
+	public AudioClip webBurn;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,7 @@ public class Web_Collide : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.tag == "FireFly"){
+			Camera.main.BroadcastMessage ("PlaySound", webBurn);
 			Camera.main.BroadcastMessage("Death", 2);
 			Destroy(collision.gameObject);
 			StartCoroutine(BurnMe(2.0F));

@@ -74,6 +74,8 @@ public class Frog : MonoBehaviour {
 	}
 
 	void PlaySquish(){
-		AudioSource.PlayClipAtPoint (crushSound, transform.position);
+		if (crushSound != null) {
+			AudioSource.PlayClipAtPoint (crushSound, transform.position, 0.7f);
+		}
 	}
 }

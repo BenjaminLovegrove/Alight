@@ -79,7 +79,7 @@ public class CamMouseMovement : MonoBehaviour {
 		}
 
 		if (fadeOut){
-			lerpTimer += (Time.deltaTime / 5.0f);
+			lerpTimer += (Time.deltaTime / 7.0f);
 			audio.volume = Mathf.Lerp(startVol, 0f, lerpTimer);
 			
 			if (audio.volume < 0.1f){
@@ -94,7 +94,7 @@ public class CamMouseMovement : MonoBehaviour {
 		}
 		
 		if (fadeIn){
-			lerpTimer += Time.deltaTime / 5f;
+			lerpTimer += Time.deltaTime / 9f;
 			audio.volume = Mathf.Lerp(0f, startVol, lerpTimer);
 		}
 

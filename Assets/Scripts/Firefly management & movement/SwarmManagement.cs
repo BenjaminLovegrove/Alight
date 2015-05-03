@@ -51,7 +51,7 @@ public class SwarmManagement : MonoBehaviour {
 
 			secondarySwarmActive = true;
 
-			minSecondaryCollideTimer = 3f;
+			minSecondaryCollideTimer = 4f;
 		}
 
 		//Tell 1 fireflies to move to seconds swarm, if there are only 2-4 fireflies left
@@ -63,7 +63,7 @@ public class SwarmManagement : MonoBehaviour {
 			
 			secondarySwarmActive = true;
 			
-			minSecondaryCollideTimer = 3f;
+			minSecondaryCollideTimer = 4f;
 		}
 
 		//See if secondary swarm is dead.
@@ -75,7 +75,7 @@ public class SwarmManagement : MonoBehaviour {
 		if (swarmCount <= 0 && respawnTrigger == false) {
 			respawnTrigger = true;
 			if (firstRespawn){
-				Invoke ("Respawn", 7.5f);
+				Invoke ("Respawn", 6.2f);
 				firstRespawn = false;
 				Camera.main.BroadcastMessage ("PlayVoice", respawnDialogue);
 			} else {
@@ -124,7 +124,7 @@ public class SwarmManagement : MonoBehaviour {
 
 			secondarySwarmActive = false;
 
-			createSwarmCooldown = 2f;
+			createSwarmCooldown = 0f;
 		}
 	}
 

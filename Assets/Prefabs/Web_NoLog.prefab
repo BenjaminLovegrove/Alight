@@ -255,6 +255,8 @@ MonoBehaviour:
   Fire2: {fileID: 177906}
   Log: {fileID: 0}
   frogsToCrush: []
+  treeFalling: {fileID: 0}
+  webBurn: {fileID: 8300000, guid: 4e9b55dddd51eb245a6d5d11d6c4df2c, type: 3}
 --- !u!114 &11477914
 MonoBehaviour:
   m_ObjectHideFlags: 1
