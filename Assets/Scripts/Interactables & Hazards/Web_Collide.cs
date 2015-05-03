@@ -7,6 +7,7 @@ public class Web_Collide : MonoBehaviour {
 	public GameObject Fire2;
 	public GameObject Log;
 	public GameObject[] frogsToCrush;
+	public AudioClip treeFalling;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +46,7 @@ public class Web_Collide : MonoBehaviour {
 		if (Log != null) {
 			Log.rigidbody.isKinematic = false;
 			Log.rigidbody.useGravity = true;
+			Camera.main.BroadcastMessage ("PlaySound", treeFalling);
 		}
 	}
 }

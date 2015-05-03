@@ -357,6 +357,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  treeFalling: {fileID: 8300000, guid: 10b83e90a0d6ff546a381179f373466d, type: 3}
 --- !u!114 &11497020
 MonoBehaviour:
   m_ObjectHideFlags: 1
