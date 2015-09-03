@@ -601,10 +601,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e433a3f1f1497646ba3ceea370b96a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSwarmScr: {fileID: 0}
   lanternLight: {fileID: 10801302}
   particles: {fileID: 0}
   lanternEnable: {fileID: 8300000, guid: 66a020bb71da6e64d81a907ebdf8a431, type: 3}
   spawnPoint: {fileID: 101316}
+  firefly: {fileID: 198614, guid: e07bac9436780c148ae00fba630ebd7a, type: 2}
   startActive: 0
 --- !u!135 &13501302
 SphereCollider:

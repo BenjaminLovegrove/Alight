@@ -6,7 +6,8 @@ public class SwarmManagement : MonoBehaviour {
 
 	public GameObject[] fireFlies = new GameObject[15];
 	public GameObject[] fireFliesSecondary = new GameObject[3];
-	int swarmCount;
+	public int swarmCount;
+	public int maxSwarmSize;
 	bool secondarySwarmActive = false;
 	Vector3 checkpointLoc;
 	float minSecondaryCollideTimer;
@@ -29,6 +30,7 @@ public class SwarmManagement : MonoBehaviour {
 	void Start () {
 		UpdateFireFlies ();
 		checkpointLoc = transform.position; //Set first checkpoint to where the mainswarm object starts.
+		maxSwarmSize = 15;
 	}
 	
 
@@ -115,12 +117,12 @@ public class SwarmManagement : MonoBehaviour {
 
 	void OnTriggerStay(Collider col){
 		if (col.gameObject.tag == "SecondarySwarm" && minSecondaryCollideTimer <= 0 && secondarySwarmActive) {
-			if (fireFlies.Length >= 1 && fireFlies[0] != null )
-				fireFlies[0].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
-			if (fireFlies.Length >= 2 && fireFlies[1] != null)
-				fireFlies[1].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
-			if (fireFlies.Length >= 3 && fireFlies[2] != null)
-				fireFlies[2].SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			if (fireFlies.Length >= 1 && secondarySwarm01 != null )
+				secondarySwarm01.SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			if (fireFlies.Length >= 2 && secondarySwarm02 != null)
+				secondarySwarm02.SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
+			if (fireFlies.Length >= 3 && secondarySwarm03 != null)
+				secondarySwarm03.SendMessage("SwarmReturn", SendMessageOptions.DontRequireReceiver);
 
 			secondarySwarmActive = false;
 
