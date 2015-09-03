@@ -964,6 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCursor: {fileID: 0}
+  startSwarmCount: 10
   speed: .5
   fadeToBlack: {fileID: 107990}
   endingMusic: {fileID: 8300000, guid: a9c82f4c4e72b28488b34603043a05ab, type: 3}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class SwarmManagement : MonoBehaviour {
 
-	public GameObject[] fireFlies = new GameObject[15];
+	public GameObject[] fireFlies = new GameObject[99];
 	public GameObject[] fireFliesSecondary = new GameObject[3];
 	public int swarmCount;
 	public int maxSwarmSize;

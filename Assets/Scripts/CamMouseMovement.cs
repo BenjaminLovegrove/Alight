@@ -8,6 +8,10 @@ public class CamMouseMovement : MonoBehaviour {
 	Vector3 screenCenterPoint;
 	public GameObject playerCursor;
 	GameObject mainSwarm;
+	SwarmManagement mainSwarmScr;
+	public int startSwarmCount;
+	float startCamSize;
+	float camSizeTarg;
 	Vector3 mainSwarmxy;
 	float minCamHeight = -20;
 	float camLerp = 0;
@@ -37,15 +41,24 @@ public class CamMouseMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		rb.isKinematic = true;
 		mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
+		mainSwarmScr = mainSwarm.GetComponent<SwarmManagement> ();
 		startVol = audio.volume;
 		ftbMat = fadeToBlack.GetComponent<MeshRenderer>().materials[0];
+		startCamSize = this.camera.orthographicSize;
 	}
 
 	// Update is called once per frame
 	void Update () {
+		//Zoom camera depending on 
+		if (!endZoom) {
+			camSizeTarg = startCamSize + ((mainSwarmScr.swarmCount - startSwarmCount) / 2);
+
+			this.camera.orthographicSize = Mathf.Lerp (this.camera.orthographicSize, camSizeTarg, Time.deltaTime/3);
+		}
+
 		//Get mouse pos & center screen
-		mousePos = Camera.main.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs (Camera.main.transform.position.z)));
-		screenCenterPoint = Camera.main.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, Mathf.Abs (Camera.main.transform.position.z)));
+		mousePos = this.camera.ScreenToWorldPoint(new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs (this.camera.transform.position.z)));
+		screenCenterPoint = this.camera.ScreenToWorldPoint(new Vector3 (Screen.width/2, Screen.height/2, Mathf.Abs (this.camera.transform.position.z)));
 		
 		//Cam restraint Stuff
 		if (transform.position.y < minCamHeight) {
@@ -100,7 +113,7 @@ public class CamMouseMovement : MonoBehaviour {
 
 		if (endZoom){
 			endZoomLerpTimer += (Time.deltaTime / lerpSpeed);
-			Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, 25f, endZoomLerpTimer);
+			this.camera.orthographicSize = Mathf.Lerp(this.camera.orthographicSize, 25f, endZoomLerpTimer);
 		}
 
 		if (ftb){
