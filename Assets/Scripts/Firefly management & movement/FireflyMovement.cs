@@ -12,6 +12,8 @@ public class FireflyMovement : MonoBehaviour {
 	private	bool 			lightOn = false;
 	public 	bool 			initialFirefly = false; //Needs to be manually set to true on starting fireflies so they start without light.
 	private	TrailRenderer 	trail;
+	public int currentlyControlling = 0; //mainswarm 0, secondary 1, third 2
+	public SwarmManagement swarmManager;
 
 	//Ending
 	public GameObject star1;
@@ -30,6 +32,7 @@ public class FireflyMovement : MonoBehaviour {
 		FireflyDragger = GameObject.FindGameObjectWithTag ("FireflyDragger");
 		scrSwarm = GetComponent<Swarming>();
 		trail = GetComponent<TrailRenderer> ();
+		swarmManager = GameObject.FindGameObjectWithTag ("MainSwarm").GetComponent<SwarmManagement>();
 
 		//Set starting fireflies to start with no light
 		areaLight = GetComponentInChildren<Light>();
@@ -79,11 +82,11 @@ public class FireflyMovement : MonoBehaviour {
 
 	void FixedUpdate(){
 		//Movement
-		if (Input.GetMouseButton (0) && mainSwarm) {
+		if (Input.GetMouseButton (0) && mainSwarm && swarmManager.currentlyControlling == 0) {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
 		
-		if (Input.GetMouseButton (1) && !mainSwarm) {
+		if (Input.GetMouseButton (0) && !mainSwarm && swarmManager.currentlyControlling == 1) {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
 	}

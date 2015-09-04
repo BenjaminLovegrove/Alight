@@ -20,6 +20,7 @@ public class CamMouseMovement : MonoBehaviour {
 	Vector3 ReturnPos;
 	public float speed = 0.7f;
 	bool camReturning = false;
+	public SwarmManagement swarmManager;
 
 	public GameObject fadeToBlack;
 	Material ftbMat;
@@ -45,15 +46,20 @@ public class CamMouseMovement : MonoBehaviour {
 		startVol = audio.volume;
 		ftbMat = fadeToBlack.GetComponent<MeshRenderer>().materials[0];
 		startCamSize = this.camera.orthographicSize;
+		swarmManager = GameObject.FindGameObjectWithTag ("MainSwarm").GetComponent<SwarmManagement>();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		//Zoom camera depending on 
 		if (!endZoom) {
-			camSizeTarg = startCamSize + ((mainSwarmScr.swarmCount - startSwarmCount) / 2);
+			if (swarmManager.currentlyControlling == 0){
+				camSizeTarg = startCamSize + ((mainSwarmScr.swarmCount - startSwarmCount) / 2);
+			} else {
+				camSizeTarg = startCamSize + ((3 - startSwarmCount) / 2);
+			}
 
-			this.camera.orthographicSize = Mathf.Lerp (this.camera.orthographicSize, camSizeTarg, Time.deltaTime/3);
+			this.camera.orthographicSize = Mathf.Lerp (this.camera.orthographicSize, camSizeTarg, Time.deltaTime/2);
 		}
 
 		//Get mouse pos & center screen

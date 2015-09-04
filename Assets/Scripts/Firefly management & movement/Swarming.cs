@@ -11,6 +11,7 @@ public class Swarming : MonoBehaviour {
 	public GameObject secondarySwarmPoint;
 	float changeDirTime;
 	public GameObject fireflyDead;
+	public SwarmManagement swarmManager;
 
 	public bool mainSwarm = true;
 
@@ -33,6 +34,7 @@ public class Swarming : MonoBehaviour {
 		swarmNormRange = swarmRange;
 		originalHalo = fireflyHalo.color;
 		originalHaloSize = fireflyHalo.range;
+		swarmManager = GameObject.FindGameObjectWithTag ("MainSwarm").GetComponent<SwarmManagement>();
 
 		//Set initial direction
 		ChangeDir ();
@@ -49,6 +51,22 @@ public class Swarming : MonoBehaviour {
 		changeDirTime -= Time.deltaTime;
 		if (changeDirTime <= 0) {
 			ChangeDir();
+		}
+
+		if (!swarmManager.firstSplit) {
+			if (mainSwarm) {
+				if (swarmManager.currentlyControlling == 0) {
+					fireflyHalo.range = originalHaloSize * 1.5f;
+				} else {
+					fireflyHalo.range = originalHaloSize;
+				}
+			} else {
+				if (swarmManager.currentlyControlling == 1) {
+					fireflyHalo.range = originalHaloSize * 2f;
+				} else {
+					fireflyHalo.range = originalHaloSize;
+				}
+			}
 		}
 	}
 	
@@ -69,7 +87,7 @@ public class Swarming : MonoBehaviour {
 		swarmRange = 7f;
 		swarmSpeed = 1.5f;
 		//fireflyHalo.color = Color.red;
-		fireflyHalo.range = originalHaloSize * 2f;
+		//fireflyHalo.range = originalHaloSize * 2f;
 	}
 
 	void SwarmReturn(){
@@ -79,8 +97,8 @@ public class Swarming : MonoBehaviour {
 		mainSwarm = true;
 		swarmRange = swarmNormRange;
 		swarmSpeed = swarmNormSpeed;
-		fireflyHalo.color = originalHalo;
-		fireflyHalo.range = originalHaloSize;
+		//fireflyHalo.color = originalHalo;
+		//fireflyHalo.range = originalHaloSize;
 	}
 
 	

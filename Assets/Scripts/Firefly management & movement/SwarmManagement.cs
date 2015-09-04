@@ -16,6 +16,8 @@ public class SwarmManagement : MonoBehaviour {
 	public GameObject fireFlyPrefab;
 	bool firstRespawn = true;
 	bool noRespawn = false;
+	public int currentlyControlling = 0; //mainswarm 0, secondary 1, third 2
+	public bool firstSplit = true;
 
 	public AudioClip respawnDialogue;
 	public AudioClip respawnSFX;
@@ -54,6 +56,10 @@ public class SwarmManagement : MonoBehaviour {
 			secondarySwarmActive = true;
 
 			minSecondaryCollideTimer = 4f;
+
+			if (firstSplit){
+				firstSplit = false;
+			}
 		}
 
 		//Tell 1 fireflies to move to seconds swarm, if there are only 2-4 fireflies left
@@ -82,6 +88,15 @@ public class SwarmManagement : MonoBehaviour {
 				Camera.main.BroadcastMessage ("PlayVoice", respawnDialogue);
 			} else {
 				Invoke ("Respawn", 2.5f);
+			}
+		}
+
+		//Change which swarm is being controlled
+		if (Input.GetMouseButtonDown (1)) {
+			if (currentlyControlling == 0){
+				currentlyControlling = 1;
+			} else {
+				currentlyControlling = 0;
 			}
 		}
 

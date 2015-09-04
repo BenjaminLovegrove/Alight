@@ -8,10 +8,12 @@ public class SwarmPointMovement : MonoBehaviour {
 	Vector3 dir;
 	public bool mainSwarm; //Need to set this for each swarm point so left/right click only drag one of them.
 	Swarming scrSwarm;
+	public SwarmManagement swarmManager;
 	
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		FireflyDragger = GameObject.FindGameObjectWithTag ("FireflyDragger");
+		swarmManager = GameObject.FindGameObjectWithTag ("MainSwarm").GetComponent<SwarmManagement>();
 	}
 	
 	void Update () {
@@ -22,11 +24,11 @@ public class SwarmPointMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (Input.GetMouseButton (0) && mainSwarm) {
+		if (Input.GetMouseButton (0) && mainSwarm && swarmManager.currentlyControlling == 0) {
 			rb.AddForce (dir.normalized * Time.deltaTime * 18);
 		}
 		
-		if (Input.GetMouseButton (1) && !mainSwarm) {
+		if (Input.GetMouseButton (0) && !mainSwarm && swarmManager.currentlyControlling == 1) {
 			rb.AddForce (dir.normalized * Time.deltaTime * 18);
 		}
 	}
