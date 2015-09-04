@@ -3,11 +3,13 @@ using System.Collections;
 
 public class CamMouseMovement : MonoBehaviour {
 
+	public bool mouseCameraControl = false;
 	Rigidbody rb;
 	Vector3 mousePos;
 	Vector3 screenCenterPoint;
 	public GameObject playerCursor;
 	GameObject mainSwarm;
+	GameObject secondarySwarm;
 	SwarmManagement mainSwarmScr;
 	public int startSwarmCount;
 	float startCamSize;
@@ -20,7 +22,6 @@ public class CamMouseMovement : MonoBehaviour {
 	Vector3 ReturnPos;
 	public float speed = 0.7f;
 	bool camReturning = false;
-	public SwarmManagement swarmManager;
 
 	public GameObject fadeToBlack;
 	Material ftbMat;
@@ -42,18 +43,18 @@ public class CamMouseMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		rb.isKinematic = true;
 		mainSwarm = GameObject.FindGameObjectWithTag ("MainSwarm");
+		secondarySwarm = GameObject.FindGameObjectWithTag ("SecondarySwarm");
 		mainSwarmScr = mainSwarm.GetComponent<SwarmManagement> ();
 		startVol = audio.volume;
 		ftbMat = fadeToBlack.GetComponent<MeshRenderer>().materials[0];
 		startCamSize = this.camera.orthographicSize;
-		swarmManager = GameObject.FindGameObjectWithTag ("MainSwarm").GetComponent<SwarmManagement>();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		//Zoom camera depending on 
 		if (!endZoom) {
-			if (swarmManager.currentlyControlling == 0){
+			if (mainSwarmScr.currentlyControlling == 0){
 				camSizeTarg = startCamSize + ((mainSwarmScr.swarmCount - startSwarmCount) / 2);
 			} else {
 				camSizeTarg = startCamSize + ((3 - startSwarmCount) / 2);
@@ -137,23 +138,36 @@ public class CamMouseMovement : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.LoadLevel("Menu_Main");
 		}
+
 	}
 
 	void FixedUpdate(){
-		//Move the camera
-		if (playerCursor.renderer.isVisible) {
-			if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 4) {
-				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
-			} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 2.5f) {
-				rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+		if (!rb.isKinematic) {
+			if (mouseCameraControl) {
+				//Move the camera
+				if (playerCursor.renderer.isVisible) {
+					if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 4) {
+						rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+					} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 2.5f) {
+						rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+					}
+				}
+
+						
+				if (Vector3.Distance (transform.position, mainSwarmxy) > 40) {
+					rb.AddForce ((mainSwarmxy - transform.position) * Time.deltaTime * 2f);
+				}
+			} else {
+				//Fixed cam
+				if (mainSwarmScr.currentlyControlling == 0) {
+					Vector3 targPos = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, mainSwarm.transform.position.z - 30);
+					transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1);
+				} else {
+					Vector3 targPos = new Vector3 (secondarySwarm.transform.position.x, secondarySwarm.transform.position.y, secondarySwarm.transform.position.z - 30);
+					transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1);
+				}
 			}
 		}
-
-				
-		if (Vector3.Distance (transform.position, mainSwarmxy) > 40) {
-			rb.AddForce ((mainSwarmxy - transform.position) * Time.deltaTime * 2f);
-		}
-		
 	}
 
 	void ReturnToSwarm(){ 

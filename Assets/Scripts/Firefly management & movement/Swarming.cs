@@ -58,13 +58,13 @@ public class Swarming : MonoBehaviour {
 				if (swarmManager.currentlyControlling == 0) {
 					fireflyHalo.range = originalHaloSize * 1.5f;
 				} else {
-					fireflyHalo.range = originalHaloSize;
+					fireflyHalo.range = originalHaloSize / 1.5f;
 				}
 			} else {
 				if (swarmManager.currentlyControlling == 1) {
 					fireflyHalo.range = originalHaloSize * 2f;
 				} else {
-					fireflyHalo.range = originalHaloSize;
+					fireflyHalo.range = originalHaloSize / 1.5f;
 				}
 			}
 		}
