@@ -14,9 +14,10 @@ public class Swarming : MonoBehaviour {
 	public SwarmManagement swarmManager;
 
 	public bool mainSwarm = true;
+	public bool soloFirefly = false;
 
 	public Light fireflyHalo;
-	Color originalHalo;
+//	Color originalHalo;
 	float originalHaloSize;
 
 	//Editable variables
@@ -32,7 +33,7 @@ public class Swarming : MonoBehaviour {
 		swarmPoint = mainSwarmPoint;
 		swarmNormSpeed = swarmSpeed;
 		swarmNormRange = swarmRange;
-		originalHalo = fireflyHalo.color;
+//		originalHalo = fireflyHalo.color;
 		originalHaloSize = fireflyHalo.range;
 		swarmManager = GameObject.FindGameObjectWithTag ("MainSwarm").GetComponent<SwarmManagement>();
 
@@ -60,8 +61,14 @@ public class Swarming : MonoBehaviour {
 				} else {
 					fireflyHalo.range = originalHaloSize / 1.5f;
 				}
-			} else {
+			} else if (!soloFirefly) {
 				if (swarmManager.currentlyControlling == 1) {
+					fireflyHalo.range = originalHaloSize * 2f;
+				} else {
+					fireflyHalo.range = originalHaloSize / 1.5f;
+				}
+			} else if (soloFirefly){
+				if (swarmManager.currentlyControlling == 2) {
 					fireflyHalo.range = originalHaloSize * 2f;
 				} else {
 					fireflyHalo.range = originalHaloSize / 1.5f;
@@ -90,6 +97,15 @@ public class Swarming : MonoBehaviour {
 		//fireflyHalo.range = originalHaloSize * 2f;
 	}
 
+	void SoloSplit(){
+		swarmPoint = this.gameObject;
+		mainSwarm = false;
+		swarmRange = 2.5f;
+		swarmSpeed = 2f;
+		soloFirefly = true;
+		swarmManager.soloFirefly = this.gameObject;
+	}
+
 	void SwarmReturn(){
 		//When secondary swarm collides with main swarm, tell secondary swarm fireflies to do this.
 		//Change swarmPoint back to main swarm point.
@@ -97,10 +113,51 @@ public class Swarming : MonoBehaviour {
 		mainSwarm = true;
 		swarmRange = swarmNormRange;
 		swarmSpeed = swarmNormSpeed;
+		soloFirefly = false;
 		//fireflyHalo.color = originalHalo;
 		//fireflyHalo.range = originalHaloSize;
 	}
 
+	//Solo firefly return to swarms
+	void OnTriggerStay(Collider col){
+		if (soloFirefly) {
+			if (col.gameObject.tag == "SecondarySwarm" && swarmManager.secondarySwarmActive) {
+				if (swarmManager.secondarySwarm03 == null) {
+					swarmManager.secondarySwarm03 = this.gameObject;
+					SwarmSplit ();
+					soloFirefly = false;
+					swarmManager.soloFirefly = null;
+					if (swarmManager.currentlyControlling == 2) {
+						swarmManager.currentlyControlling = 1;
+					}
+				} else if (swarmManager.secondarySwarm02 == null) {
+					swarmManager.secondarySwarm02 = this.gameObject;
+					SwarmSplit ();
+					soloFirefly = false;
+					swarmManager.soloFirefly = null;
+					if (swarmManager.currentlyControlling == 2) {
+						swarmManager.currentlyControlling = 1;
+					}
+				} else if (swarmManager.secondarySwarm01 == null) {
+					swarmManager.secondarySwarm01 = this.gameObject;
+					SwarmSplit ();
+					soloFirefly = false;
+					swarmManager.soloFirefly = null;
+					if (swarmManager.currentlyControlling == 2) {
+						swarmManager.currentlyControlling = 1;
+					}
+				}
+			} else if (col.gameObject.tag == "MainSwarm" && swarmManager.minSecondaryCollideTimer < 0f) {
+				SwarmReturn ();
+				soloFirefly = false;
+				swarmManager.soloFirefly = null;
+				if (swarmManager.currentlyControlling == 2) {
+					swarmManager.currentlyControlling = 0;
+				}
+			}
+		}
+			
+	}
 	
 	void WallCollide(){
 		Instantiate (fireflyDead, transform.position, Quaternion.identity);

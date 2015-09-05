@@ -5,12 +5,11 @@ using System.Collections.Generic;
 public class SwarmManagement : MonoBehaviour {
 
 	public GameObject[] fireFlies = new GameObject[99];
-	public GameObject[] fireFliesSecondary = new GameObject[3];
 	public int swarmCount;
 	public int maxSwarmSize;
-	bool secondarySwarmActive = false;
+	public bool secondarySwarmActive = false;
 	Vector3 checkpointLoc;
-	float minSecondaryCollideTimer;
+	public float minSecondaryCollideTimer;
 	public GameObject secondarySwarmPoint;
 	float createSwarmCooldown; //This is because when moving a secondary swarm back to the main swarm it just instantly made another secondary swarm due to holding right click the next frame.
 	public GameObject fireFlyPrefab;
@@ -18,14 +17,16 @@ public class SwarmManagement : MonoBehaviour {
 	bool noRespawn = false;
 	public int currentlyControlling = 0; //mainswarm 0, secondary 1, third 2
 	public bool firstSplit = true;
+	bool canSplit = false;
 
 	public AudioClip respawnDialogue;
 	public AudioClip respawnSFX;
 
 
-	GameObject secondarySwarm01;
-	GameObject secondarySwarm02;
-	GameObject secondarySwarm03;
+	public GameObject secondarySwarm01;
+	public GameObject secondarySwarm02;
+	public GameObject secondarySwarm03;
+	public GameObject soloFirefly;
 
 	bool respawnTrigger = false;
 
@@ -39,39 +40,10 @@ public class SwarmManagement : MonoBehaviour {
 	void Update () {
 		UpdateFireFlies ();
 		swarmCount = fireFlies.Length;
-
-		//Tell 3 fireflies to move to seconds swarm
-		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount > 4 && createSwarmCooldown <= 0) {
-			secondarySwarmPoint.transform.position = this.transform.position;
-			if (fireFlies.Length >= 1 && fireFlies[0] != null)
-				fireFlies[0].SendMessage("SwarmSplit");
-			if (fireFlies.Length >= 2 && fireFlies[1] != null)
-				fireFlies[1].SendMessage("SwarmSplit"); //Sends a message to 3 fireflies (swarming script) telling them to follow 2nd swarm point instead of first
-			if (fireFlies.Length >= 3 && fireFlies[2] != null)
-				fireFlies[2].SendMessage("SwarmSplit");
-			secondarySwarm01 = fireFlies[0];
-			secondarySwarm02 = fireFlies[1];
-			secondarySwarm03 = fireFlies[2];
-
-			secondarySwarmActive = true;
-
-			minSecondaryCollideTimer = 4f;
-
-			if (firstSplit){
-				firstSplit = false;
-			}
-		}
-
-		//Tell 1 fireflies to move to seconds swarm, if there are only 2-4 fireflies left
-		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount <= 4 && swarmCount > 1 && createSwarmCooldown <= 0) {
-			secondarySwarmPoint.transform.position = this.transform.position;
-			if (fireFlies.Length >= 1 && fireFlies[0] != null)
-				fireFlies[0].SendMessage("SwarmSplit");
-			secondarySwarm01 = fireFlies[0];
-			
-			secondarySwarmActive = true;
-			
-			minSecondaryCollideTimer = 4f;
+		if (canSplit){
+			SplitFireflies ();
+		} else if (Camera.main.GetComponent<Rigidbody>().isKinematic == false){
+			canSplit = true;
 		}
 
 		//See if secondary swarm is dead.
@@ -95,7 +67,9 @@ public class SwarmManagement : MonoBehaviour {
 		if (Input.GetMouseButtonDown (1)) {
 			if (currentlyControlling == 0){
 				currentlyControlling = 1;
-			} else {
+			} else if (currentlyControlling == 1) {
+				currentlyControlling = 2;
+			} else if (currentlyControlling == 2) {
 				currentlyControlling = 0;
 			}
 		}
@@ -142,6 +116,89 @@ public class SwarmManagement : MonoBehaviour {
 			secondarySwarmActive = false;
 
 			createSwarmCooldown = 0f;
+			currentlyControlling = 0;
+		}
+	}
+
+	void SplitFireflies (){
+		//Tell 3 fireflies to move to seconds swarm
+		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount > 4 && createSwarmCooldown <= 0) {
+			bool extraRequired = false;
+			int fireFlyRequired = 0;
+			secondarySwarmPoint.transform.position = this.transform.position;
+			if (fireFlies.Length >= 1 && fireFlies[0] != null){
+				if (fireFlies[0].GetComponent<Swarming>().soloFirefly == false){
+					fireFlies[0].SendMessage("SwarmSplit");
+					secondarySwarm01 = fireFlies[0];
+				} else {
+					extraRequired = true;
+					fireFlyRequired = 0;
+				}
+			}
+			if (fireFlies.Length >= 2 && fireFlies[1] != null){
+				if (fireFlies[1].GetComponent<Swarming>().soloFirefly == false){
+					fireFlies[1].SendMessage("SwarmSplit");
+					secondarySwarm02 = fireFlies[1];
+				} else {
+					extraRequired = true;
+					fireFlyRequired = 1;
+				}
+			}
+			if (fireFlies.Length >= 3 && fireFlies[2] != null){
+				if (fireFlies[2].GetComponent<Swarming>().soloFirefly == false){
+					fireFlies[2].SendMessage("SwarmSplit");
+					secondarySwarm03 = fireFlies[2];
+				} else {
+					extraRequired = true;
+					fireFlyRequired = 2;
+				}
+			}
+
+			if (extraRequired){
+				if (fireFlies.Length >= 4 && fireFlies[4] != null){
+					fireFlies[4].SendMessage("SwarmSplit");
+					if (fireFlyRequired == 0){
+						secondarySwarm01 = fireFlies[4];
+					} else if (fireFlyRequired == 1){
+						secondarySwarm02 = fireFlies[4];
+					} else if (fireFlyRequired == 2){
+						secondarySwarm03 = fireFlies[4];
+					}
+				}
+			}
+
+			secondarySwarmActive = true;
+			
+			minSecondaryCollideTimer = 4f;
+			
+			if (firstSplit){
+				firstSplit = false;
+			}
+		}
+		
+		//Tell 1 fireflies to move to seconds swarm, if there are only 2-4 fireflies left
+		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount <= 4 && swarmCount > 1 && createSwarmCooldown <= 0) {
+			secondarySwarmPoint.transform.position = this.transform.position;
+			if (fireFlies.Length >= 1 && fireFlies[0] != null)
+				fireFlies[0].SendMessage("SwarmSplit");
+			secondarySwarm01 = fireFlies[0];
+			
+			secondarySwarmActive = true;
+			
+			minSecondaryCollideTimer = 4f;
+		}
+
+		if (Input.GetMouseButtonDown (1) && secondarySwarmActive && soloFirefly == null && currentlyControlling == 1) {
+			if (secondarySwarm03 != null){
+				secondarySwarm03.SendMessage("SoloSplit");
+				secondarySwarm03 = null;
+			} else if (secondarySwarm02 != null){
+				secondarySwarm02.SendMessage("SoloSplit");
+				secondarySwarm02 = null;
+			} else if (secondarySwarm01 != null){
+				secondarySwarm01.SendMessage("SoloSplit");
+				secondarySwarm01 = null;
+			}
 		}
 	}
 

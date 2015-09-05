@@ -86,9 +86,14 @@ public class FireflyMovement : MonoBehaviour {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
 		
-		if (Input.GetMouseButton (0) && !mainSwarm && swarmManager.currentlyControlling == 1) {
+		if (Input.GetMouseButton (0) && !mainSwarm && swarmManager.soloFirefly != this.gameObject && swarmManager.currentlyControlling == 1) {
 			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(15,25));
 		}
+
+		if (Input.GetMouseButton (0) && swarmManager.soloFirefly == this.gameObject && swarmManager.currentlyControlling == 2) {
+			rb.AddForce (dir.normalized * Time.deltaTime * Random.Range(20,25));
+		}
+
 	}
 
 	void LightOn(){
@@ -108,5 +113,6 @@ public class FireflyMovement : MonoBehaviour {
 	void Lock(){
 		rb.isKinematic = true;
 	}
+
 
 }

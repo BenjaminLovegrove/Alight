@@ -55,9 +55,11 @@ public class CamMouseMovement : MonoBehaviour {
 		//Zoom camera depending on 
 		if (!endZoom) {
 			if (mainSwarmScr.currentlyControlling == 0){
-				camSizeTarg = startCamSize + ((mainSwarmScr.swarmCount - startSwarmCount) / 2);
-			} else {
-				camSizeTarg = startCamSize + ((3 - startSwarmCount) / 2);
+				camSizeTarg = startCamSize + ((mainSwarmScr.swarmCount - startSwarmCount) / 1.5f);
+			} else if (mainSwarmScr.currentlyControlling == 1) {
+				camSizeTarg = startCamSize + ((3 - startSwarmCount) / 1.5f);
+			} else if (mainSwarmScr.currentlyControlling == 2){
+				camSizeTarg = startCamSize + ((1 - startSwarmCount) / 1.5f);
 			}
 
 			this.camera.orthographicSize = Mathf.Lerp (this.camera.orthographicSize, camSizeTarg, Time.deltaTime/2);
@@ -162,8 +164,11 @@ public class CamMouseMovement : MonoBehaviour {
 				if (mainSwarmScr.currentlyControlling == 0) {
 					Vector3 targPos = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, mainSwarm.transform.position.z - 30);
 					transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1);
-				} else {
+				} else if (mainSwarmScr.currentlyControlling == 1) {
 					Vector3 targPos = new Vector3 (secondarySwarm.transform.position.x, secondarySwarm.transform.position.y, secondarySwarm.transform.position.z - 30);
+					transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1);
+				} else if (mainSwarmScr.currentlyControlling == 2) {
+					Vector3 targPos = new Vector3 (mainSwarmScr.soloFirefly.transform.position.x, mainSwarmScr.soloFirefly.transform.position.y, mainSwarmScr.soloFirefly.transform.position.z - 30);
 					transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1);
 				}
 			}
