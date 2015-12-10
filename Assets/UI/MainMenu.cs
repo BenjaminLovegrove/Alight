@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour {
 	private float pauseTimer = 0.0f;
 	float musicLerpTimer = 0;
 	bool starting = false;
+	private float musicStartVol;
 
 	void Start(){
 		fadeOutObj = GameObject.Find ("Image");
@@ -24,6 +25,7 @@ public class MainMenu : MonoBehaviour {
 		credits.enabled = false;
 		dialogueSource = GetComponentsInChildren<AudioSource> ();
 		OriginalcreditsPos = credits.gameObject.transform.position;
+		musicStartVol = dialogueSource[0].volume;
 	}
 
 	void Update(){
@@ -32,9 +34,8 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		if (starting){
-			musicLerpTimer += Time.deltaTime * 0.000065f;
-
-			float musicStartVol = dialogueSource[0].volume;
+			musicLerpTimer += Time.deltaTime / 10;
+		
 			dialogueSource[0].volume = Mathf.Lerp(musicStartVol, 0f, musicLerpTimer);
 		}
 

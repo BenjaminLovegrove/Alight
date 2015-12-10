@@ -556,7 +556,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: cf302477bce5eb948be50c1734669ce4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .600000024
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -952,6 +952,7 @@ MonoBehaviour:
   - {fileID: 0}
   rainSound: {fileID: 8231892}
   cloudsHaveTriggered: 0
+  rainStartVol: .600000024
 --- !u!114 &11493172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -963,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a270d0f4689b44e80a32669c1c7634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseCameraControl: 0
   playerCursor: {fileID: 0}
   startSwarmCount: 10
   speed: .5

@@ -22,8 +22,10 @@ public class WeatherManager : MonoBehaviour {
 	public	List<Cloud>			clouds;
 	public	AudioSource			rainSound;
 	public 	bool				cloudsHaveTriggered;
+	public float 				rainStartVol = 0.6f;
 
 	private Lightning			m_Lightning;
+	private float 				rainFadeIn = -0.5f;
 
 
 
@@ -31,14 +33,16 @@ public class WeatherManager : MonoBehaviour {
 		m_Lightning = gameObject.GetComponentInChildren<Lightning>();
 	}
 
-	// Use this for initialization
 	void Start () {
 		cloudsHaveTriggered = false;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-	
+		//Fade rain in at start
+		if (rainFadeIn < 1) {
+			rainFadeIn += Time.deltaTime * 0.7f;
+			rainSound.volume = Mathf.Lerp (0, rainStartVol, rainFadeIn);
+		}
 	}
 
 	public void ReduceRain() {
