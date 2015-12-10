@@ -21,11 +21,11 @@ public class Swarming : MonoBehaviour {
 	float originalHaloSize;
 
 	//Editable variables
-	float swarmSpeed = 2f;
+	float swarmSpeed = 2.5f;
 	float swarmNormSpeed;
-	float swarmRange = 16f;
+	float swarmRange = 14f;
 	float swarmNormRange;
-	float swarmDirectionVolatility = 1f;
+	float swarmDirectionVolatility = 1.2f;
 	
 	void Start () {
 		mainSwarmPoint = GameObject.FindGameObjectWithTag ("MainSwarm");
@@ -159,8 +159,18 @@ public class Swarming : MonoBehaviour {
 			
 	}
 	
-	void WallCollide(){
-		Instantiate (fireflyDead, transform.position, Quaternion.identity);
+	void WallCollide(bool web){
+		if (soloFirefly) {
+			swarmManager.soloFirefly = null;
+			if (swarmManager.secondarySwarmActive){
+				swarmManager.currentlyControlling = 1;
+			} else {
+				swarmManager.currentlyControlling = 0;
+			}
+		}
+		if (!web) {
+			Instantiate (fireflyDead, transform.position, Quaternion.identity);
+		}
 		Destroy (this.gameObject);
 		//Play a sound;
 	}

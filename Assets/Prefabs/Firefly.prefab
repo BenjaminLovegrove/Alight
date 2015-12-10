@@ -150,7 +150,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198614}
   m_LocalRotation: {x: .112354152, y: .698123693, z: .698123515, w: -.112354152}
-  m_LocalPosition: {x: -10.1957703, y: -18.9169235, z: 0}
+  m_LocalPosition: {x: -10.1199999, y: -11.3999996, z: 0}
   m_LocalScale: {x: 1, y: .700000048, z: 1}
   m_Children:
   - {fileID: 498612}
@@ -166,7 +166,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.159999996, y: -.699999988, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498618}
@@ -447,7 +447,9 @@ MonoBehaviour:
   FireflyDragger: {fileID: 0}
   mainSwarm: 0
   ffDeath: {fileID: 8300000, guid: 87a07a80f5f614f4f9615c583cb89ea7, type: 3}
-  initialFirefly: 0
+  initialFirefly: 1
+  currentlyControlling: 0
+  swarmManager: {fileID: 0}
   star1: {fileID: 169360, guid: 5adca900ed03d404aa0ea3d118e758e5, type: 2}
   starSound: {fileID: 8300000, guid: 8ea91ae5e90e9a9409b1854fa2d13f42, type: 3}
   areaLight: {fileID: 0}
@@ -466,7 +468,9 @@ MonoBehaviour:
   mainSwarmPoint: {fileID: 120618, guid: d1697e683e45209428bab757a3f20f16, type: 2}
   secondarySwarmPoint: {fileID: 130892, guid: f1cbd38f8ddc6d84c9e93e49f57af57b, type: 2}
   fireflyDead: {fileID: 162336, guid: 7191fc0434846e943b4df64ef0a5d4d3, type: 2}
+  swarmManager: {fileID: 0}
   mainSwarm: 1
+  soloFirefly: 0
   fireflyHalo: {fileID: 10898618}
 --- !u!114 &11483304
 MonoBehaviour:

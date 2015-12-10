@@ -24,12 +24,12 @@ public class SwarmPointMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (Input.GetMouseButton (0) && mainSwarm && swarmManager.currentlyControlling == 0) {
-			rb.AddForce (dir.normalized * Time.deltaTime * 18);
+		if (mainSwarm && swarmManager.currentlyControlling == 0) {
+			rb.AddForce (dir.normalized * Time.deltaTime * 13);
 		}
 		
-		if (Input.GetMouseButton (0) && !mainSwarm && swarmManager.currentlyControlling == 1) {
-			rb.AddForce (dir.normalized * Time.deltaTime * 18);
+		if (!mainSwarm && swarmManager.currentlyControlling == 1) {
+			rb.AddForce (dir.normalized * Time.deltaTime * 13);
 		}
 	}
 }

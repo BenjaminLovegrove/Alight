@@ -52,10 +52,10 @@ public class Lantern_large : MonoBehaviour {
 			mainSwarm.SendMessage ("Checkpoint", spawnPoint.transform.position);
 
 			//Up swarm size by 2 and add fireflies.
-			mainSwarmScr.maxSwarmSize += 2;
+			mainSwarmScr.maxSwarmSize += 1;
 			int fireflyDifference = mainSwarmScr.maxSwarmSize - mainSwarmScr.swarmCount;
 			for (int i = 0; i < fireflyDifference; i++){
-				Instantiate (firefly, transform.position, Quaternion.identity);
+				Instantiate (firefly, transform.position, Quaternion.Euler (270,200,0));
 			}
 		}
 	}

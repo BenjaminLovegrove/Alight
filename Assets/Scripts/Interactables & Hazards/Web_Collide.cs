@@ -25,7 +25,8 @@ public class Web_Collide : MonoBehaviour {
 		if (collision.gameObject.tag == "FireFly"){
 			Camera.main.BroadcastMessage ("PlaySound", webBurn);
 			Camera.main.BroadcastMessage("Death", 2);
-			Destroy(collision.gameObject);
+			//Destroy(collision.gameObject);
+			collision.gameObject.SendMessage("WallCollide", true);
 			StartCoroutine(BurnMe(2.0F));
 
 			if (frogsToCrush.Length > 0){

@@ -33,7 +33,7 @@ public class SwarmManagement : MonoBehaviour {
 	void Start () {
 		UpdateFireFlies ();
 		checkpointLoc = transform.position; //Set first checkpoint to where the mainswarm object starts.
-		maxSwarmSize = 15;
+		maxSwarmSize = 11;
 	}
 	
 
@@ -176,7 +176,7 @@ public class SwarmManagement : MonoBehaviour {
 			}
 		}
 		
-		//Tell 1 fireflies to move to seconds swarm, if there are only 2-4 fireflies left
+		//Tell 1 firefly to move to seconds swarm, if there are only 2-4 fireflies left
 		if (Input.GetMouseButtonDown (1) && secondarySwarmActive == false && swarmCount <= 4 && swarmCount > 1 && createSwarmCooldown <= 0) {
 			secondarySwarmPoint.transform.position = this.transform.position;
 			if (fireFlies.Length >= 1 && fireFlies[0] != null)
