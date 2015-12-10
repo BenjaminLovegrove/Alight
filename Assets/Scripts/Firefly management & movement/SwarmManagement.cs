@@ -50,6 +50,11 @@ public class SwarmManagement : MonoBehaviour {
 		if (secondarySwarm01 == null && secondarySwarm02 == null && secondarySwarm03 == null && secondarySwarmActive == true) {
 			secondarySwarmActive = false;
 			Camera.main.SendMessage("ReturnToSwarm");
+			if (soloFirefly != null){
+				currentlyControlling = 2;
+			} else {
+				currentlyControlling = 0;
+			}
 		}
 
 		if (swarmCount <= 0 && respawnTrigger == false) {
