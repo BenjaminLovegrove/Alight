@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour {
 		dialogueSource = GetComponentsInChildren<AudioSource> ();
 		OriginalcreditsPos = credits.gameObject.transform.position;
 		musicStartVol = dialogueSource[0].volume;
+		Screen.showCursor = true;
 	}
 
 	void Update(){
