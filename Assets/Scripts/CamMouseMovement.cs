@@ -58,10 +58,10 @@ public class CamMouseMovement : MonoBehaviour {
 			} else if (mainSwarmScr.currentlyControlling == 1) {
 				camSizeTarg = startCamSize + ((3 - startSwarmCount) / 3f);
 			} else if (mainSwarmScr.currentlyControlling == 2){
-				camSizeTarg = startCamSize + ((1 - startSwarmCount) / 3f);
+				camSizeTarg = startCamSize + ((0 - startSwarmCount) / 2f);
 			}
 
-			this.camera.orthographicSize = Mathf.Lerp (this.camera.orthographicSize, camSizeTarg, Time.deltaTime/2);
+			this.camera.orthographicSize = Mathf.Lerp (this.camera.orthographicSize, camSizeTarg, Time.deltaTime/1);
 		}
 
 		//Get mouse pos & center screen
@@ -148,9 +148,9 @@ public class CamMouseMovement : MonoBehaviour {
 				//Move the camera
 				if (playerCursor.renderer.isVisible) {
 					if (Mathf.Abs (mousePos.x - screenCenterPoint.x) > 4) {
-						rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+						rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1f);
 					} else if (Mathf.Abs (mousePos.y - screenCenterPoint.y) > 2.5f) {
-						rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1.5f);
+						rb.AddForce ((mousePos - screenCenterPoint) * Time.deltaTime * 1f);
 					}
 				}
 
@@ -164,25 +164,25 @@ public class CamMouseMovement : MonoBehaviour {
 					Vector3 swarmPos = new Vector3 (mainSwarm.transform.position.x, mainSwarm.transform.position.y, mainSwarm.transform.position.z - 30);
 					Vector3 targPos = Vector3.Lerp (mousePos, swarmPos, 0.5f);
 					if (Input.GetMouseButton(0)){
-						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1f);
+						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.8f);
 					} else {
-						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.4f);
+						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.3f);
 					}
 				} else if (mainSwarmScr.currentlyControlling == 1) {
 					Vector3 swarmPos = new Vector3 (secondarySwarm.transform.position.x, secondarySwarm.transform.position.y, secondarySwarm.transform.position.z - 30);
 					Vector3 targPos = Vector3.Lerp (mousePos, swarmPos, 0.5f);
 					if (Input.GetMouseButton(0)){
-						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1f);
+						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.8f);
 					} else {
-						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.4f);
+						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.3f);
 					}
 				} else if (mainSwarmScr.currentlyControlling == 2) {
 					Vector3 swarmPos = new Vector3 (mainSwarmScr.soloFirefly.transform.position.x, mainSwarmScr.soloFirefly.transform.position.y, mainSwarmScr.soloFirefly.transform.position.z - 30);
 					Vector3 targPos = Vector3.Lerp (mousePos, swarmPos, 0.5f);
 					if (Input.GetMouseButton(0)){
-						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 1f);
+						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.8f);
 					} else {
-						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.4f);
+						transform.position = Vector3.Lerp (transform.position, targPos, Time.deltaTime * 0.3f);
 					}
 				}
 			}

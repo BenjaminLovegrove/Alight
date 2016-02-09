@@ -19,7 +19,7 @@ public class EndStarTrigger : MonoBehaviour {
 
 		if (col.gameObject.tag =="FireFly"){
 			col.SendMessage("EndingStars", delay);
-			delay += 3f;
+			delay += 2f;
 		}	
 	}
 }

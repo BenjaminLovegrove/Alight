@@ -15,7 +15,7 @@ public class EndingStars : MonoBehaviour {
 
 
 	void Start () {
-		rngTimer = Random.Range (1.5f, 4f);
+		rngTimer = Random.Range (1f, 3f);
 	}
 	
 	// Update is called once per frame
